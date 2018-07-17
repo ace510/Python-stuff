@@ -1,0 +1,28 @@
+{%  extends 'base.html' %}
+
+{%  block header %}
+    <h1>{% block title %}Radio Quiz {%  endblock %}</h1>
+    <link rel='stylesheet' href='//cdn.jsdelivr.net/npm/hack-font/build/web/hack-subset.css'>
+{%  endblock %}
+
+{% block content %}
+    <form>
+        <fieldset>
+            <legend> What two functions are required from a transciever</legend>
+            <ul>
+                <li>
+                    <label for="A">Transmit and Receive</label>
+                    <input type="radio" id="A" name="choices" value="A"></li>
+                <li>
+        <label for="B">Trans fat and Receive</label>
+                    <input type="radio" id="B" name="choices" value="B"> </li>
+                <li>
+        <label for="C">Transmit and Sieve</label>
+                    <input type="radio" id="C" name="choices" value="C"></li>
+                <li>
+        <label for="D">Transformers and Decepticons</label>
+                    <input type="radio" id="D" name="choices" value="D"></li>
+            </ul>
+        </fieldset>
+    </form>
+{% endblock %}

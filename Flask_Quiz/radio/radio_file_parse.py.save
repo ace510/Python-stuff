@@ -1,0 +1,31 @@
+import time
+import string
+import random
+import pickle
+import re
+
+radiofile = open('radioquestions.doc','rbU')
+output_file = open('output','w')
+test_dict ={}
+questionRegex = re.compile(r'\w\d\w\d\d\s.\w.')
+
+while True:
+	line = radiofile.readline()
+	search = questionRegex.search(line)
+	if search.group():
+	       	question_number = line[0:5]
+		correct_answer = line[7]
+
+		#range was 5
+		question_text = radiofile.readline()
+		answer_A = radiofile.readline()
+		answer_B = radiofile.readline()
+		answer_C = radiofile.readline()
+		answer_D = radiofile.readline()
+
+		#add info to dictionary
+		test_dict[question_number]= (correct_answer,question_text,answer_A,answer_B,answer_C,answer_D)
+ine:
+		break
+
+pickle.dump(test_dict, output_file, 2)

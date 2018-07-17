@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{%  block header %}
+<h1>{% block title %}Random Walk Test {%  endblock %}</h1>
+    <link rel='stylesheet' href='//cdn.jsdelivr.net/npm/hack-font/build/web/hack-subset.css'>
+{%  endblock %}
+
+{% block content %}
+    {% for number in the_range %}
+        <h1> {{ number }}</h1>
+        <h1> technical info</h1>
+        {% if not loop.last %}
+            <hr>
+        {% endif %}
+    {%  endfor %}
+{% endblock %}
