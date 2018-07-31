@@ -6,9 +6,9 @@
 
 {% block content %}
     {% for post in items %}
-        <h1> {{ post['title'] }}</h1>
-        <h1> {{ post['body'] }}</h1>
-        <h1> {{ post['author'] }}</h1>
+        <h1> {{ post.name }}</h1>
+        <h1> {{ post.body }}</h1>
+        <h1> {{ post.author }}</h1>
         {% if not loop.last %}
             <hr>
         {% endif %}

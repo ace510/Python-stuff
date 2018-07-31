@@ -6,7 +6,7 @@ import re
 import subprocess
 from flask import (
     Blueprint, flash, g, redirect, render_template, request, session, url_for)
-from todo_db import get_db
+from todo_db import get_db, Post
 
 bp = Blueprint('todo', __name__)
 
@@ -96,10 +96,9 @@ def radio_input_output(output):
 @bp.route('/todo', methods=('GET', 'POST'))
 def todo():
     db = get_db()
-    users_table = db.table('users')
-    tasks_table = db.table('tasks')
 
-    return render_template('todo/index.html', items=db.all())
+    return render_template('todo/index.html', items=db.query(Post).order_by(
+        Post.id))
 
 
 @bp.route('/todo/create', methods=('GET', 'POST'))
@@ -126,11 +125,25 @@ def create():
         else:
             db = get_db()
 
-            db.insert({'title': title,
-                       'body': body,
-                       'author': author,
-                       'date': date})
+            db.add(Post(title=title, body=body,author=author,date=date))
 
         return redirect(url_for('todo.todo'))
 
     return render_template('todo/create.html')
+
+# tinydb is not going to suffice for deleting a post by id, need to implement
+#  a relational DB
+# @bp.route('/todo/delete/<int:id>', methods=('GET','POST'))
+# def delete(id):
+#     if request.method =='POST':
+#         accept = request.form['accept']
+#         error = None
+#
+#         if not accept:
+#             error = 'please select yes to delete post or hit back to go back'
+#
+#     else:
+#         db = get_db()
+#
+#         db.delete(id)
+#         # find out how to delete from tiny db
