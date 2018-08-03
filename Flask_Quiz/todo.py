@@ -125,7 +125,15 @@ def create():
         else:
             db = get_db()
 
-            db.add(Post(title=title, body=body,author=author,date=date))
+            new_post = Post(body=request.form['body'],
+            date=request.form['date'],
+            author=request.form['author'],
+            title=request.form['title']
+                 )
+            db.add(new_post)
+
+            db.commit()
+            db.close()
 
         return redirect(url_for('todo.todo'))
 

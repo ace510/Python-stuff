@@ -10,7 +10,7 @@ def create_app(test_config=None):
     app.config.from_mapping(
         SECRET_KEY='Haderach',
         DATABASE=os.path.join(app.instance_path, 'quiz.sqlite'),
-        TODODATABASE=os.path.join(app.instance_path, 'todo_db.json')
+        TODODATABASE=os.path.join(app.instance_path, 'db.json')
     )
 
     if test_config is None:

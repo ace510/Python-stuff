@@ -4,6 +4,8 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 
 Base = declarative_base()
+
+
 class Post(Base):
     __tablename__ = 'post'
 
@@ -20,11 +22,19 @@ class Post(Base):
 
 
 def get_db():
-    if 'todo_db' not in g:
+    if 'db' not in g:
+        print 'adding new db connection'
         g.engine = sqlalchemy.create_engine('sqlite:///instance/:memory',
                                             echo=True)
         Base.metadata.create_all(g.engine)
         g.Session = sessionmaker(bind=g.engine)
-        g.todo_db = g.Session()
-        g.todo_db.add(Post(body='hi',date='today',author='me',title='no'))
-    return g.todo_db
+        g.db = g.Session()
+
+        # this code adds sample data into the db if nothing is there
+        if g.db.query(Post).first() is None:
+            g.db.add(Post(body='I\'ve done it', date='8/2/2018',
+                          author='Ian Clark',
+                          title='Achieved minimum viable product'))
+            g.db.add(Post(body='changed to relational database', date='today',
+                          author='Ian Clark', title='next, to remove posts'))
+    return g.db
