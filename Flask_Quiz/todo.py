@@ -5,7 +5,8 @@ import pprint
 import re
 import subprocess
 from flask import (
-    Blueprint, flash, g, redirect, render_template, request, session, url_for)
+    Blueprint, flash, redirect, render_template, request, url_for)
+# from flask import session, g
 from todo_db import get_db, Post
 
 bp = Blueprint('todo', __name__)
@@ -125,11 +126,10 @@ def create():
         else:
             db = get_db()
 
-            new_post = Post(body=request.form['body'],
-            date=request.form['date'],
-            author=request.form['author'],
-            title=request.form['title']
-                 )
+            new_post = Post(body=body,
+                            date=date,
+                            author=author,
+                            title=title)
             db.add(new_post)
 
             db.commit()
@@ -139,19 +139,30 @@ def create():
 
     return render_template('todo/create.html')
 
+
 # tinydb is not going to suffice for deleting a post by id, need to implement
-#  a relational DB
-# @bp.route('/todo/delete/<int:id>', methods=('GET','POST'))
-# def delete(id):
-#     if request.method =='POST':
-#         accept = request.form['accept']
-#         error = None
-#
-#         if not accept:
-#             error = 'please select yes to delete post or hit back to go back'
-#
-#     else:
-#         db = get_db()
-#
-#         db.delete(id)
-#         # find out how to delete from tiny db
+#  a relational DB, SQLlite for now
+@bp.route('/todo/delete/<int:post_id>', methods=('GET', 'POST'))
+def delete(post_id):
+    if request.method == 'POST':
+        accept = request.form['accept']
+        error = None
+        print post_id
+
+        if accept != 'on':
+            flash('please select yes to delete post or hit back to go back')
+
+        else:
+            db = get_db()
+
+            frank = db.query(Post).filter_by(id = post_id).first()
+            print 'here is frank'
+            print frank
+            db.delete(frank)
+            # not sure if the lines underneath are needed, to remvoe later
+            db.commit()
+            db.close()
+
+        return redirect(url_for('todo.todo'))
+
+    return render_template('todo/delete.html')

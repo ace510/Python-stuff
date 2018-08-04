@@ -6,9 +6,10 @@
 
 {% block content %}
     {% for post in items %}
-        <h1> {{ post.name }}</h1>
+        <h1> {{ post.title }}</h1>
         <h1> {{ post.body }}</h1>
         <h1> {{ post.author }}</h1>
+        <a href={{ url_for('todo.delete', post_id=post.id) }}> Delete</a>
         {% if not loop.last %}
             <hr>
         {% endif %}

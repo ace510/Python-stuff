@@ -6,7 +6,8 @@
 <nav>
     <h1>Clark family TODO list</h1>
     <ul>
-        <li><a href="{{  url_for('todo.create') }}">Create</a>
+        <li><a href="{{  url_for('todo.create') }}">Create</a></li>
+            <li><a href={{ url_for('todo.todo') }}> Home </a></li>
 {#        {% if g.user %}#}
 {#        <li><span>{{ g.user['username'] }}</span>#}
 {#        <li><a href="{{ url_for('auth.logout') }}">Log Out</a>#}
