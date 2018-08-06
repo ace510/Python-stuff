@@ -8,6 +8,7 @@ from flask import (
     Blueprint, flash, redirect, render_template, request, url_for)
 # from flask import session, g
 from todo_db import get_db, Post
+from dateutil import parser
 
 bp = Blueprint('todo', __name__)
 
@@ -99,7 +100,7 @@ def todo():
     db = get_db()
 
     return render_template('todo/index.html', items=db.query(Post).order_by(
-        Post.id))
+        Post.date))
 
 
 @bp.route('/todo/create', methods=('GET', 'POST'))
@@ -118,8 +119,11 @@ def create():
         if not author:
             author = 'Anonymous'
 
-        if not date:
-            date = '11:49am 12/1/2019'
+        try:
+            date_object = parser.parse(date)
+        except ValueError:
+            error = 'bad date'
+
         if error is not None:
             flash(error)
 
@@ -127,7 +131,7 @@ def create():
             db = get_db()
 
             new_post = Post(body=body,
-                            date=date,
+                            date=date_object,
                             author=author,
                             title=title)
             db.add(new_post)

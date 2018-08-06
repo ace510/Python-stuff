@@ -11,7 +11,7 @@ class Post(Base):
 
     id = sqlalchemy.Column(sqlalchemy.Integer, primary_key=True)
     body = sqlalchemy.Column(sqlalchemy.String)
-    date = sqlalchemy.Column(sqlalchemy.String)
+    date = sqlalchemy.Column(sqlalchemy.Date)
     author = sqlalchemy.Column(sqlalchemy.String)
     title = sqlalchemy.Column(sqlalchemy.String)
 
@@ -32,9 +32,12 @@ def get_db():
 
         # this code adds sample data into the db if nothing is there
         if g.db.query(Post).first() is None:
-            g.db.add(Post(body='I\'ve done it', date='8/2/2018',
-                          author='Ian Clark',
-                          title='Achieved minimum viable product'))
-            g.db.add(Post(body='changed to relational database', date='today',
-                          author='Ian Clark', title='next, to remove posts'))
+            # g.db.add(Post(body='I\'ve done it', date='8/2/2018',
+            #              author='Ian Clark',
+            #              title='Achieved minimum viable product'))
+            # g.db.add(Post(body='changed to relational database', date='today',
+                    # author='Ian Clark', title='next, to remove posts'))
+
+            g.db.commit()
+            g.db.close()
     return g.db

@@ -1,7 +1,8 @@
 pre, code { font-family: Hack, monospace; }
 html { font-family: Hack, monospace; background: #eee; padding:  1rem; }
 body { max-width: 960px; margin: 0 auto; background: white; }
-h1 { font-family: serif; color: #000000; margin: 1rem 0; }
+h1 { font-family: Hack, sans-serif; color: #000000; margin: 1rem 0; }
+h2 {font-family: Hack, sans-serif; color: #000001; size: 10px ;}
 a { color: #000000; }
 hr { border: none; border-top: 1px solid lightgray; }
 nav { font-family: Hack, monospace; background: lightgray; display: flex; align-items: center;
