@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{%  block header %}
+
+{%  endblock %}
+
+{% block content %}
+    {% for post in items %}
+        <h1> {{ post.title }}</h1>
+        <h2> {{ post.body }}</h2>
+        <h2> {{ post.author }}</h2>
+        <a href={{ url_for('todo.delete', post_id=post.id) }}> Delete</a>
+        {% if not loop.last %}
+            <hr>
+        {% endif %}
+    {%  endfor %}
+{% endblock %}

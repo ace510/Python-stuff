@@ -1,0 +1,13 @@
+{%  extends 'base.html' %}
+
+{% block header %}
+    <h1>{%  block title  %}Delete Item{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+    <form method="post">
+        <label for="accept">Are you sure?</label>
+        <input type="checkbox" name="accept" id="accept">
+        <input type="submit" value="Submit">
+    </form>
+{% endblock %}
