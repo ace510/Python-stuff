@@ -104,3 +104,4 @@ ENV/
 pyfactors.py
 .token
 token
+.output
