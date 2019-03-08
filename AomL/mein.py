@@ -12,17 +12,17 @@ async def on_ready():
 @dis_client.event
 async def on_message(message):
     
-
-    print(notGarbo(message.author.name), end=': ')
-    print(notGarbo(message.content), end='')
+    await printNotgarbo(message.author.name, ': ')
+    await printNotgarbo(message.content)
 
     for i in message.content.split():
-        word_set.add(notGarbo(i).lower())
-        print('the set is %s long' % len(word_set))
+        word_set.add(await notGarbo(i))
+        # print('the set is %s long' % len(word_set))
 
     if len( word_set ) > 500:
         with open('.output','a') as output_file:
-            output_file.write(str(word_set))
+            output_file.write(await notGarbo(' '.join(word_set).lower()))
+            output_file.write('\n')
             word_set.clear()
 
 
@@ -40,9 +40,17 @@ async def on_message(message):
     #     await asyncio.sleep(5)
     #     await dis_client.send_message(message.channel, 'Done sleeping')
 
-async def notGarbo(*garbo_text):
-    for garbo_line in garbo_text:
-        return garbo_line.encode(sys.stdout.encoding, errors='ignore').decode(sys.stdout.encoding)
+async def notGarbo(garbo_text):
+    try:
+        potentially_garbp = garbo_text.encode(sys.stdout.encoding, errors='ignore').decode(sys.stdout.encoding, errors='ignore')
+    except OSError:
+        potentially_garbp = 'a'
+
+    return potentially_garbp
+
+async def printNotgarbo(garbo_text, garbo_end= '\n'):
+    ungarbo = await notGarbo(garbo_text)
+    print(ungarbo, end= garbo_end)
 
 
 
