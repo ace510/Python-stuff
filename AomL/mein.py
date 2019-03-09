@@ -1,6 +1,8 @@
 import discord, asyncio, sys
 
 dis_client = discord.Client()
+mein_out_file = '.output'
+word_set=set()
 
 @dis_client.event
 async def on_ready():
@@ -20,7 +22,7 @@ async def on_message(message):
         # print('the set is %s long' % len(word_set))
 
     if len( word_set ) > 500:
-        with open('.output','a') as output_file:
+        with open(mein_out_file,'a') as output_file:
             output_file.write(await notGarbo(' '.join(word_set).lower()))
             output_file.write('\n')
             word_set.clear()
@@ -52,12 +54,14 @@ async def printNotgarbo(garbo_text, garbo_end= '\n'):
     ungarbo = await notGarbo(garbo_text)
     print(ungarbo, end= garbo_end)
 
+def main():
 
 
-with open(".token") as file:    
-    token_wing_user = file.readline()
-    token_wing_secret = file.readline()
+    with open(".token") as file:    
+        token_wing_user = file.readline()
+        token_wing_secret = file.readline()
 
-word_set=set()
 
-dis_client.run(token_wing_user, token_wing_secret)
+    dis_client.run(token_wing_user, token_wing_secret)
+
+main()
