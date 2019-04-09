@@ -16,7 +16,7 @@ def quiz():
 @bp.route('/rwalk', methods=('GET', 'POST'))
 def rwalk():
     the_range = []
-    for i in range(25):
+    for _ in range(25):
         the_range.append(random.randrange(0, 25))
 
     return render_template('radioquiz/rwalk.html', the_range=the_range)

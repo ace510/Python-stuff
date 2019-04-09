@@ -1,5 +1,7 @@
 import os
 import random
+from . import radioquiz
+from . import todo
 
 from flask import Flask
 
@@ -43,10 +45,10 @@ def create_app(test_config=None):
     # app.register_blueprint(blog.bp)
     # app.add_url_rule('/', endpoint='index')
 
-    from . import radioquiz
+    
     app.register_blueprint(radioquiz.bp)
 
-    from . import todo
+    
     app.register_blueprint(todo.bp)
 
     return app

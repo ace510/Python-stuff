@@ -12,16 +12,17 @@
         <article class="post">
             <header>
                 <div>
-                    <h1>{{ post['title']}}</h1>
-                    <div class="about">by {{ post['username'] }} on {{
+                    <h1>{{ image}}</h1>
+                    <!-- <div class="about">by {{ post['username'] }} on {{
                             post['created'].strftime('%Y-%m-%d') }}</div>
-                </div>
-                {% if g.user['id'] == post['author_id'] %}
+                </div> -->
+                <!-- {% if g.user['id'] == post['author_id'] %}
                 <a class="action" href="{{ url_for('blog.update',
                 id=post['id'])}}">Edit</a>
-                {% endif %}
+                {% endif %} -->
             </header>
-            <p class="body">{{ post['body'] }}</p>
+            <!-- <p class="body">{{ post['body'] }}</p> -->
+            <img src="{{images + img_directory}}">
         </article>
         {% if not loop.last %}
             <hr>
