@@ -7,7 +7,7 @@ import subprocess
 from flask import (
     Blueprint, flash, redirect, render_template, request, url_for)
 # from flask import session, g
-from todo_db import get_db, Post
+from .todo_db import get_db, Post
 from dateutil import parser
 
 bp = Blueprint('todo', __name__)
