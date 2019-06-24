@@ -45,9 +45,9 @@ tset_names = set()
 
 while True:
     # wlan.active(True)
-    pin.off()
-    tupelo = wlan.scan()
     pin.on()
+    tupelo = wlan.scan()
+    pin.off()
     	
     for entity in tupelo:
         tset.add(entity)
@@ -55,6 +55,7 @@ while True:
         if entity[0] not in tset_names:
             tset_names.add(entity[0])
 	
-    print(tset_names)
+    if len(tset_names) > 3:
+        print(tset_names)
     # wlan.active(False)
-    time.sleep_ms(60000)
+    # time.sleep_ms(60000)
