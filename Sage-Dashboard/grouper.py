@@ -13,6 +13,8 @@ with open('.token','r') as file:
     for line in file:
         QQQ_url = str(line)
 
+foo_dict =''
+
 
 
 human_names = {
