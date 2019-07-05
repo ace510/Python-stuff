@@ -5,28 +5,36 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import Column, Integer, String
 from sqlalchemy import Sequence
 from sqlalchemy.orm import sessionmaker
+import pyodbc
 
 # print(sqlalchemy.__version__)
 
 want_echo = False
-#enable to do echo
+# enable to do echo
 engine = create_engine('firebird+fdb://SYSDBA:45952877@//home/ihclark/database/test.fdb', echo=want_echo)
+sql_engine = create_engine('mssql+pyodbc://squirrel')
+
+
+
+# create the engine, in this case Freebired
 Base = declarative_base()
 Base.metadata.create_all(engine)
+# declarative mapping as opposed to a classical
 Session = sessionmaker(bind=engine)
 session = Session()
-
+# creates a new session, all CRUD is done against the session
 
 class User1(Base):
-    __tablename__ = 'users1'
+    __tablename__ = 'users'
     id = Column(Integer, Sequence('user_id_seq'), primary_key=True)
-    name = Column(String(50))
-    fullname = Column(String(50))
-    nickname = Column(String(50))
+    name = Column(String())
+    fullname = Column(String())
+    nickname = Column(String())
 
     def __repr__(self):
         return "<User(name='%s', fullname='%s', nickname='%s')>" % (
                                 self.name, self.fullname, self.nickname)
+    # Chance here, is not needed, just looks pretty
 
 
 
@@ -35,9 +43,12 @@ class User1(Base):
 
 
 ed_user = User1(name='ed', fullname='Ed Jones', nickname='edsnickname')
+# do this to create a new element of User1, attached to variable ed_user
 # print(ed_user.nickname)
 session.add(ed_user)
+# add the new element to the session
 
+session.commit()
 our_user = session.query(User1).filter_by(name='ed').first()
 
 # print(repr(our_user))
@@ -50,10 +61,6 @@ session.add_all([
     User1(name='Violet', fullname='Violet Love', nickname='Little Ratto'),
     User1(name='Dan', fullname='Dan Man', nickname='The') ])
 
-ed_user.nickname = 'eddie'
-
 print(session.dirty)
 
 session.commit()
-
-print(ed_user.id)
