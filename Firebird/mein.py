@@ -8,10 +8,13 @@ from sqlalchemy.orm import sessionmaker
 import pyodbc
 
 # print(sqlalchemy.__version__)
+with open('.token', r) as file:
+    engine_string = file.readline()
+    
 
 want_echo = False
 # enable to do echo
-engine = create_engine('firebird+fdb://SYSDBA:45952877@//home/ihclark/database/test.fdb', echo=want_echo)
+engine = create_engine(engine_string, echo=want_echo)
 sql_engine = create_engine('mssql+pyodbc://squirrel')
 
 
