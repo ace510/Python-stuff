@@ -9,7 +9,7 @@ from sqlalchemy.orm import sessionmaker
 # no ODBC for you, come back next year
 
 # print(sqlalchemy.__version__)
-with open('.token', r) as file:
+with open('.token', 'r') as file:
     engine_string = file.readline()
     
 
