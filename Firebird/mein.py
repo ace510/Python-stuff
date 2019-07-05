@@ -16,8 +16,8 @@ with open('.token', 'r') as file:
 want_echo = False
 # enable to do echo
 engine = create_engine(engine_string, echo=want_echo)
-sql_engine = create_engine('mssql+pyodbc://squirrel')
-
+# sql_engine = create_engine('mssql+pyodbc://squirrel')
+# again, MSSQL bad
 
 
 # create the engine, in this case Freebired
