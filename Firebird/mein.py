@@ -5,7 +5,8 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import Column, Integer, String
 from sqlalchemy import Sequence
 from sqlalchemy.orm import sessionmaker
-import pyodbc
+# import pyodbc
+# no ODBC for you, come back next year
 
 # print(sqlalchemy.__version__)
 with open('.token', r) as file:
