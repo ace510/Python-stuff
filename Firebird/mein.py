@@ -1,5 +1,7 @@
 import sqlalchemy
 import fdb
+import random
+import string
 from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import Column, Integer, String
@@ -12,7 +14,6 @@ from sqlalchemy.orm import sessionmaker
 with open('.token', 'r') as file:
     engine_string = file.readline()
     
-
 want_echo = False
 # enable to do echo
 engine = create_engine(engine_string, echo=want_echo)
@@ -29,7 +30,7 @@ session = Session()
 # creates a new session, all CRUD is done against the session
 
 class User1(Base):
-    __tablename__ = 'users'
+    __tablename__ = 'users1'
     id = Column(Integer, Sequence('user_id_seq'), primary_key=True)
     name = Column(String())
     fullname = Column(String())
@@ -40,31 +41,42 @@ class User1(Base):
                                 self.name, self.fullname, self.nickname)
     # Chance here, is not needed, just looks pretty
 
+def delete_peep(session, num = 0):
+    for _ in range(num):
+        person = session.query(User1).first()
+        #print(repr(person))
+        session.delete(person)
+    session.commit()
+
+def random_string(length):
+    letters = string.ascii_letters
+    output = ''
+    for _ in range(length):
+        output += random.choice(letters)
+
+    return output
 
 
+def add_peep(session, name, fullname, nickname):
+    person = User1(name=name, fullname=name, nickname=name)
+    #print(repr(person))
+    session.add(person)
+    session.commit()
 
-# Column(Integer, Sequence('user_id_seq'), primary_key=True)
+def show_peep(session):
+    person = session.query(User1).first()
+    print(repr(person))
+
+def main():
+
+    add_peep(session, 'Ian', 'Ian Clark', 'Ace')
+    add_peep(session, 'Dan', 'Dan wallace', 'Dan T Man')
+    add_peep(session, 'James', 'James White', 'Skipper')
+
+    for _ in range(3):
+        show_peep(session)
+        delete_peep(session)
 
 
-ed_user = User1(name='ed', fullname='Ed Jones', nickname='edsnickname')
-# do this to create a new element of User1, attached to variable ed_user
-# print(ed_user.nickname)
-session.add(ed_user)
-# add the new element to the session
-
-session.commit()
-our_user = session.query(User1).filter_by(name='ed').first()
-
-# print(repr(our_user))
-
-# if ed_user is our_user:
-#    print('true')
-
-session.add_all([
-    User1(name='Ian', fullname='Ian Clark', nickname='Ace'),
-    User1(name='Violet', fullname='Violet Love', nickname='Little Ratto'),
-    User1(name='Dan', fullname='Dan Man', nickname='The') ])
-
-print(session.dirty)
-
-session.commit()
+if __name__ == "__main__":
+    main()
