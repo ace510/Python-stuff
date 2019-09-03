@@ -1,3 +1,5 @@
+# IP Fundamentals notes
+
 2^7 2^6 2^5 2^4 2^3 2^2 2^1 2^0
 128 64  32  16  8   4   2   1
 
@@ -23,3 +25,10 @@ MAC Address
 OUI      Host
 00:00:00 00:00:00
 
+DNS maps IP to a hostname
+
+DHCP: Dynamic Host Configuration Protocol
+
+WINS: Windows Internet Name Service
+
+NAT: Network Address Translation
