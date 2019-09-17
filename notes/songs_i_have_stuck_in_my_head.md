@@ -16,3 +16,7 @@ in the air tonight- Phil Collins
 I don't care anymore - Phil Colins
 Can't feel my Face - Weeknd
 Treasure - Bruno Mars
+Blue Orchid - White Stripes
+Crazy Train - Ozzy Ozbourne
+Get over it - OK Go
+I sat by the ocean - Queens of the Stone Age

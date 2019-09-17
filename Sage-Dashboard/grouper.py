@@ -31,6 +31,7 @@ options.add_argument("--window-size=10,10")
 options.add_argument("--test-type")
 options.add_argument("--disable-extensions")
 options.add_argument("--remote-debugging-port=0")
+options.add_argument("--headless")
 
 
 
