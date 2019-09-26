@@ -5,3 +5,5 @@
 3. the garbage goes out monday night, next time it will be [Recycling]
 4. I need to work on Ruby's image website
 5. I need to work on that Minecraft bounty plugin
+6. <https://www.youtube.com/watch?v=4erSxfEECIc&feature=youtu.be>
+7. support@triplebyte.com

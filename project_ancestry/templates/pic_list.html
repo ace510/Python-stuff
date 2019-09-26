@@ -1,0 +1,7 @@
+{% extends "9-18-test.jinja" %}
+{% block title %} List Of words {% endblock %}
+{%block content %} 
+    {% for pic in words %}
+    <img src= {{ pic }}  >
+    {% endfor %}
+{% endblock %}

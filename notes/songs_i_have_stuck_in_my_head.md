@@ -20,3 +20,6 @@ Blue Orchid - White Stripes
 Crazy Train - Ozzy Ozbourne
 Get over it - OK Go
 I sat by the ocean - Queens of the Stone Age
+Deustchland - Ramstein
+London Calling - The Clash
+Wagon Wheel - Old Crow Medicine Show

@@ -106,3 +106,4 @@ pyfactors.py
 token
 .output
 .vocab
+.input
