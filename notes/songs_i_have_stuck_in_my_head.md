@@ -23,3 +23,9 @@ I sat by the ocean - Queens of the Stone Age
 Deustchland - Ramstein
 London Calling - The Clash
 Wagon Wheel - Old Crow Medicine Show
+Electric Feel - MGMT
+Everlong - Foo Fighters
+Flagpole Sitta - Harvey Danger
+Last Nite - The Strokes
+Last Resort - Papa Roach
+don't you (forget about me) - Simple Minds
