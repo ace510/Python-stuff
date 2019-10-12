@@ -1,7 +1,7 @@
 {% extends "9-18-test.jinja" %}
 {% block title %}{{title}}{% endblock %}
 {%block content %}
-    {% for name, link in words %}
-    <a href="{{url_for()}}">{{name}}</a>
+    {% for key, value in words.items() %}
+    <a href="{{ value }}"> {{key}}</a>
     {% endfor %}
 {% endblock %}
