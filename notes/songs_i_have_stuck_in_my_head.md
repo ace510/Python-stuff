@@ -29,3 +29,7 @@ Flagpole Sitta - Harvey Danger
 Last Nite - The Strokes
 Last Resort - Papa Roach
 don't you (forget about me) - Simple Minds
+Killer Klowns - The Dickies
+One - Metallica
+Dirty Laundry - Don Headly
+Just a Girl - No Doubt
