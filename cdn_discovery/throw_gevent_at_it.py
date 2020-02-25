@@ -12,16 +12,25 @@ from requests.exceptions import ChunkedEncodingError
 def is_content(x):
     payload = ''.join(x)
     test_url = confidential.preamble + payload
+    trial_request = None
     
     try:
-        with gevent.Timeout(180,TimeoutError) as timeout:
+        with gevent.Timeout(180,False):
             trial_request = requests.get(test_url)
     except (ConnectionResetError, ChunkedEncodingError, WindowsError(420) ): 
         # OSError is too broad, fishing for  WindowsError() 
-        
+        return (False, test_url)
+    except OSError:
+        print('big fat cero')
         return (False, test_url)
     except TimeoutError:
         print('help me')
+        return (False, test_url)
+
+    if trial_request is None:
+        return (False, test_url)
+    # except IndexError:
+    #     print('wake me up, wake me up inside')
     # this is where the request is made, is parallelized!
     if trial_request.status_code not in (404,400,403, 504, 500):
         # this is a list of 'bad' status codes
@@ -43,8 +52,10 @@ if __name__ == "__main__":
     output_set= set()
     task_number = 0
     workers = 0
-            
-    for i in range(1,128):
+    start_length = 3
+
+    # changing start_length changes how short the url selector length
+    for i in range(start_length,128):
         for returned_data in p.imap_unordered(is_content, itertools.permutations(moon.search_space, i)):
             if returned_data[0]:
                 output_set.add(returned_data[1])
