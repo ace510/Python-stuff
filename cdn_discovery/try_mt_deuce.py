@@ -41,6 +41,7 @@ if __name__ == "__main__":
             #     task_number += 1
         
         print('done with search space '+str(i))
+        
             # output = results.get()
             # for item in output:
             #     if item != 0:
