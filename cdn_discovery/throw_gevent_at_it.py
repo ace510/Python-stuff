@@ -3,10 +3,11 @@ from gevent import monkey; monkey.patch_all()
 import moon
 import confidential
 from gevent.pool import Pool
+from gevent.pool import Group
 import itertools
 import requests
 import time
-from requests.exceptions import ChunkedEncodingError
+from requests.exceptions import ConnectionError
 
 
 def is_content(x):
@@ -17,10 +18,12 @@ def is_content(x):
     try:
         with gevent.Timeout(180,False):
             trial_request = requests.get(test_url)
-    except (ConnectionResetError, ChunkedEncodingError, WindowsError(420) ): 
+    except (requests.exceptions.ConnectionError): 
         # OSError is too broad, fishing for  WindowsError() 
         return (False, test_url)
-    except OSError:
+    except requests.exceptions.ConnectionError:
+        print('how many times do we have to teach you this old')
+    except WindowsError(420):
         print('big fat cero')
         return (False, test_url)
     except TimeoutError:
@@ -48,7 +51,9 @@ def is_content(x):
         return (False, test_url)
 
 if __name__ == "__main__":    
-    p = Pool(250)
+    # p = Pool(250)
+    # dis worked
+    p = Group()
     output_set= set()
     task_number = 0
     workers = 0
@@ -56,12 +61,13 @@ if __name__ == "__main__":
 
     # changing start_length changes how short the url selector length
     for i in range(start_length,128):
-        for returned_data in p.imap_unordered(is_content, itertools.permutations(moon.search_space, i)):
+        for returned_data in p.imap_unordered(is_content, 
+        itertools.permutations(moon.search_space, i), maxsize =  10):
             if returned_data[0]:
                 output_set.add(returned_data[1])
-            elif (len_p := len(p)) != workers:
-                print(f'there are {len_p} workers')
-                workers = len_p
+            # elif (len_p := len(p)) != workers:
+            #     print(f'there are {len_p} workers')
+            #     workers = len_p
 
             # elif task_number >= 100:
             #      print(f'DEBUG: input was {returned_data[1]}')
