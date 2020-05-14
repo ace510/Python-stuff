@@ -115,7 +115,7 @@
 19. A
 20. B
 
-## Chapter 6 Review Questions
+## Chapter 6 Review Questions *
 
 1. D
 2. C
@@ -130,7 +130,7 @@
 11. A,C, D
 12. A
 13. D
-14. D X
+14. A
 15. C
 16. B
 17. B
@@ -223,12 +223,58 @@
 12. D
 13. B, C
 14. D
-15. A X
+15. B
 16. C
 17. A
-18. B X
+18. C X
 19. C
 20. D
+
+## Chapter 11 Review Questions
+
+1. B X
+2. C, D
+3. D
+4. D
+5. C X
+6. B, D
+7. B X
+8. B
+9. D
+10. D
+11. A, B, D
+12. C X
+13. A, C, D
+14. C
+15. B
+16. A
+17. C
+18. D
+19. B
+20. A
+
+## Chapter 12 Review Questions
+
+1. A, B
+2. A X
+3. A
+4. C
+5. B
+6. B
+7. A, D
+8. C X
+9. B X
+10. B
+11. A
+12. B
+13. C, D
+14. D
+15. B
+16. C
+17. C
+18. A
+19. D
+20. C
 
 ## Chapter N Review Questions
 

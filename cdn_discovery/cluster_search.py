@@ -120,7 +120,7 @@ def urllib_iscontent(request_string):
         return(False, test_url)
 
 def main():
-    process_count = 2
+    process_count = 1
     # start_length = 0
     print('Hello world')
     Fought_the_law = iterator_ception()

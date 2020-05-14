@@ -16,7 +16,7 @@ output_set = set()
 
 if __name__ == "__main__":
     for i in range(1,128):
-        for postamble in itertools.permutations(search_space, i):
+        for postamble in itertools.combinations_with_replacement(search_space, i):
             # the postamble will start with a, b, c, d and work out to longer, 128
             # 128 is chosen as a sane upper bound
             #print(postamble)
