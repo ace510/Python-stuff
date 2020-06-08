@@ -89,6 +89,7 @@ if __name__ == "__main__":
     output_set= set()
     task_number = 0
     workers = 0
+    run_time = 0
     start_length = 3
     # nothing interesting came from a payload less than 3 digits
 
@@ -105,8 +106,10 @@ if __name__ == "__main__":
                 with open('results_mt.md','a') as file:
                     for item in output_set:
                         file.write(item)
-            else:
-                time.now()
+            
+            if time.time() > (run_time + 60):
+                print(f'{time_stamp()} testing {returned_data[1]}')
+                run_time = time.time()
             
         print(f'done with search space {i}')
 
