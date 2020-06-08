@@ -207,7 +207,7 @@
 19. B
 20. C
 
-## Chapter 10 Review Questions
+## Chapter 10 Review Questions *
 
 1. C
 2. A
@@ -226,24 +226,24 @@
 15. B
 16. C
 17. A
-18. C X
+18. D
 19. C
 20. D
 
 ## Chapter 11 Review Questions
 
-1. B X
+1. A
 2. C, D
 3. D
 4. D
-5. C X
+5. A
 6. B, D
-7. B X
+7. A
 8. B
 9. D
 10. D
 11. A, B, D
-12. C X
+12. D X
 13. A, C, D
 14. C
 15. B
@@ -253,17 +253,17 @@
 19. B
 20. A
 
-## Chapter 12 Review Questions
+## Chapter 12 Review Questions *
 
 1. A, B
-2. A X
+2. C
 3. A
 4. C
 5. B
 6. B
 7. A, D
-8. C X
-9. B X
+8. B
+9. A
 10. B
 11. A
 12. B
@@ -275,6 +275,29 @@
 18. A
 19. D
 20. C
+
+## Chapter 13 Review Questions
+
+1. B,C
+2. D
+3. C
+4. A
+5. B,C
+6. D
+7. C X
+8. C
+9. D
+10. B
+11. D
+12. C X
+13. A X
+14. A X
+15. C
+16. D X
+17. A X
+18. A
+19. B
+20. B X
 
 ## Chapter N Review Questions
 

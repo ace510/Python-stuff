@@ -35,7 +35,7 @@ class MyPool(multiprocessing.pool.Pool):
 
 def iterator_ception():
     for i in range(0,128):
-        yield itertools.permutations(moon.search_space, i)
+        yield itertools.combinations_with_replacement(moon.search_space, i)
 
 
 def tater_masher(iter_tater):
@@ -113,7 +113,7 @@ def urllib_iscontent(request_string):
     if trial_request.status not in (404,400,403, 504, 500):
         print(f'{test_url} returned status code {trial_request.status}')
         return (True, test_url)
-    elif trial_request.status in (403, 504, 500, 503):
+    elif trial_request.status in (504, 500, 503): # 403 is kidna noisy
         print(f'{test_url} failed with {trial_request.status}')
         return (False, test_url)
     else:

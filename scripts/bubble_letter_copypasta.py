@@ -1,11 +1,22 @@
-import string
+import string 
+import argparse
 
-copy_pasta = "aurora"
+parser = argparse.ArgumentParser(description="generate funny Discord meme"
+"letters")
+parser.add_argument('copy_pasta', type =str, nargs='+', help='the string'
+' to be turned to emoji',)
+
+args = parser.parse_args()
+
+copy_pasta = ' '.join(args.copy_pasta)
+
 output=[]
 
 for letter in copy_pasta:
     monch = 'ERROR'
-    if letter not in string.ascii_letters:
+    if letter == ' ':
+        monch = '<br/>'
+    elif letter not in string.ascii_letters:
         monch = ''
     else:
         monch = f':regional_indicator_{letter.lower()}: '

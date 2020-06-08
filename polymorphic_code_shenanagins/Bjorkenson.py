@@ -24,10 +24,8 @@ def exeggutor(input_thingy):
         # may god have mercy on my soul a,=()
         pass
     except IndexError:
-        # still trying to capture this one
-        print(input_thingy)
-        foo = input('stopping here')
-    
+        # captured 'km'[8] makes sense
+        pass
     return results
 
 

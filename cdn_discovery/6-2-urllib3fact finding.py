@@ -10,6 +10,13 @@ import urllib3
 import time
 from requests.exceptions import ConnectionError
 
+bad_data = (
+    b'Access is forbidden\r\n',
+    b'<html>\r\n<head><title>400 Bad Request</title></head>\r\n<body>\r\n<cente'
+    b'r><h1>400 Bad Request</h1></center>\r\n<hr><center>nginx</center>\r\n</bo'
+    b'dy>\r\n</html>\r\n'
+)
+
 def time_stamp():
     the_now = time.localtime()
     if the_now.tm_hour == 0:
@@ -55,7 +62,7 @@ def is_content(x):
     if trial_request is None:
         return (False, test_url)
     
-
+    trial_request
 
 
     if trial_request.status not in (404,400,403, 504, 500, 502, 503):
@@ -73,23 +80,29 @@ def is_content(x):
         return (True, test_url)
     elif trial_request.status in (504, 500, 502, 503):
         print(f'{time_stamp()}{payload} failed with {trial_request.status}')
-        return (False, test_url)
+        return (False, test_url, trial_request.data, trial_request.headers)
     else:
-        return (False, test_url)
+        return (False, test_url, trial_request.data, trial_request.headers)
 
 if __name__ == "__main__":
 
-    with open('results_mt.md','w') as file:
+    fancy_dict = {
+        'Server': set(),
+        'Content': set(),
+        'Connection': set(),
+        'Content-Type': set(),
+        'Cache-Control': set()
+    }
+
+    bad_keys = ('Date', 'Content-Length')
+
+    with open('results_mt.md','a') as file:
         file.write(f'run starting at {time_stamp()}')
 
-
-    # p = Pool(250)
-    # dis worked
     p = Group()
     output_set= set()
-    task_number = 0
-    workers = 0
-    start_length = 3
+    start_length = 1
+    run_time = 0
     # nothing interesting came from a payload less than 3 digits
 
     http = urllib3.PoolManager(timeout=180,
@@ -100,14 +113,31 @@ if __name__ == "__main__":
         for returned_data in p.imap_unordered(is_content, 
         itertools.combinations_with_replacement(moon.search_space, i), 
         maxsize =  10):
-            
+
             if returned_data[0]:
                 with open('results_mt.md','a') as file:
-                    for item in output_set:
-                        file.write(item)
+                        file.write(returned_data[1])
+                        file.write('\n')
+                        print(returned_data[1])
             else:
-                time.now()
+                data, headers = returned_data[2:]
             
+            if time.time() > (run_time + 60):
+                print(f'{time_stamp()} testing {returned_data[1]}')
+                run_time = time.time()
+
+            if data not in bad_data:
+                print(f'URL is {returned_data[1]}')
+                print(f'Data is: {data} ')
+                print(f'Headers is: {headers}')
+                print(f'Total Headers is: {fancy_dict}')
+                _ = input('continue?')
+                
+            for key, value in headers.items():
+                if key not in bad_keys:
+                    fancy_dict[key].add(value)
+
+        
         print(f'done with search space {i}')
 
             
