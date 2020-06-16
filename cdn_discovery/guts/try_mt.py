@@ -1,6 +1,5 @@
-from __future__ import print_function
-import moon
-import confidential
+from . import moon
+from . import confidential
 from multiprocessing import Pool
 import itertools
 import requests
@@ -19,7 +18,7 @@ def is_content(x):
         # 400 is something that should trigger an internal app but doesn't
         # 403 is  file denied access
         # 504 is a weird bug, maybe rate limiting?
-        print(test_url+' returned status code ' + trial_request.status_code)
+        print(f'{test_url} returned status code {trial_request.status_code}')
         # discovering new and exciting Status_codes
         return (True, test_url)
     else:
@@ -40,8 +39,7 @@ if __name__ == "__main__":
             # else:
             #     task_number += 1
         
-        print('done with search space '+str(i))
-        
+        print(f'done with search space {i}')
             # output = results.get()
             # for item in output:
             #     if item != 0:

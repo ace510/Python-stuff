@@ -1,7 +1,7 @@
 import gevent
 from gevent import monkey; monkey.patch_all()
-import moon
 import confidential
+import moon
 from gevent.pool import Pool
 from gevent.pool import Group
 import itertools
@@ -35,7 +35,7 @@ def is_content(x):
     trial_request = None
     # payload is the thing to stick at the end of the domain you want to test
     # test_url is the whole url
-    # initializign trial_request to none, so if it gets changed later, means 
+    # initializing trial_request to none, so if it gets changed later, means 
     # there is results
 
     try:
@@ -65,7 +65,7 @@ def is_content(x):
         # 403 is  file denied access
         # 504 is a weird bug, maybe rate limiting?
         # 502 is bad gateway
-        # 503 means service is overloaded or unavailible
+        # 503 means service is overloaded or unavailable
         print(f'{time_stamp()}{payload} returned status code '
         f'{trial_request.status}')
 
@@ -90,8 +90,10 @@ if __name__ == "__main__":
     task_number = 0
     workers = 0
     run_time = 0
-    start_length = 3
+    # see note explaining 4 start_length
+    start_length = 4
     # nothing interesting came from a payload less than 3 digits
+    # search length 3 can be done in 10 minutes, shows nothing
 
     http = urllib3.PoolManager(timeout=180,
     retries=urllib3.Retry(3, raise_on_redirect=False))
@@ -121,7 +123,7 @@ if __name__ == "__main__":
         #print(test_url)
         # the postamble will start with a, b, c, d and work out to longer
         # 128 is chosen as a sane upper bound
-        # in memorium, I am a dumbass, permutations doesn't repeat selections, 
+        # in memoriam, I am a dumbass, permutations doesn't repeat selections, 
         # i need combinations with replacement
     
     print('should never print within the heat death of the universe')

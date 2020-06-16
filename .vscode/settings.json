@@ -1,5 +1,12 @@
 {
     "python.pythonPath": "C:\\Python38\\python.exe",
-    "editor.rulers": [80,120]
+    "editor.rulers": [
+        80,
+        120
+    ],
+    "cSpell.words": [
+        "imap",
+        "mday"
+    ]
     
 }
