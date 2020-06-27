@@ -90,30 +90,38 @@ if __name__ == "__main__":
     task_number = 0
     workers = 0
     run_time = 0
+    notify_minutes = 5
+    notify = notify_minutes * 60
     # see note explaining 4 start_length
-    start_length = 4
+    start_length = 0
     # nothing interesting came from a payload less than 3 digits
     # search length 3 can be done in 10 minutes, shows nothing
 
-    http = urllib3.PoolManager(timeout=180,
+    http = urllib3.PoolManager(num_pools = 100, timeout=180,
     retries=urllib3.Retry(3, raise_on_redirect=False))
 
     # changing start_length changes how short the url selector length starts off
-    for i in range(start_length,128):
+    for i in range(start_length,4):
+        current_time = time.time()
+        iter_count = 0
+
         for returned_data in p.imap_unordered(is_content, 
         itertools.combinations_with_replacement(moon.search_space, i), 
-        maxsize =  10):
-            
+        maxsize =  100):
+            iter_count += 1
             if returned_data[0]:
                 with open('results_mt.md','a') as file:
-                    for item in output_set:
-                        file.write(item)
+                    file.write(returned_data[1])
             
-            if time.time() > (run_time + 60):
-                print(f'{time_stamp()} testing {returned_data[1]}')
-                run_time = time.time()
+            # if time.time() > (run_time + notify):
+            #     print(f'{time_stamp()} testing {returned_data[1]}')
+            #     run_time = time.time()
             
         print(f'done with search space {i}')
+        elapsed_time = time.time() - current_time
+        print(f'took {elapsed_time} seconds')
+        print(f'with a total of {iter_count} searches')
+        print(f'averaging {elapsed_time / iter_count} per search')
 
             
         # with open('results_mt.md','w') as file:
