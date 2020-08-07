@@ -13,6 +13,17 @@ copy_pasta = ' '.join(args.copy_pasta)
 output=[]
 
 for letter in copy_pasta:
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+    if letter.lower() in string.ascii_letters:
+        output.append(f':regional_indicator_{letter.lower()}: ')
+        
+=======
+=======
+>>>>>>> 9efeefb094b6ffe518cf8af3e532bc5b4a505d51
+=======
+>>>>>>> 9efeefb094b6ffe518cf8af3e532bc5b4a505d51
     monch = 'ERROR'
     if letter == ' ':
         monch = '<br/>'
@@ -22,6 +33,13 @@ for letter in copy_pasta:
         monch = f':regional_indicator_{letter.lower()}: '
 
     output.append(monch)
+<<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> 9efeefb094b6ffe518cf8af3e532bc5b4a505d51
+=======
+>>>>>>> 9efeefb094b6ffe518cf8af3e532bc5b4a505d51
+=======
+>>>>>>> 9efeefb094b6ffe518cf8af3e532bc5b4a505d51
 
 output_str = ''.join(output)
 

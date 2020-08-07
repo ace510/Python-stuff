@@ -15,4 +15,35 @@ def time_stamp():
     stam_parts = (the_now.tm_mon, '/', the_now.tm_mday, ' ', 
     the_now.tm_hour, ':', the_now.tm_min, '~')
 
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
     return ''.join(stam_parts)
+
+
+    | Website: https://idlerpg.lolhosting.net | Register: 
+    /msg IdleBot REGISTER Baldric St3wP0t Pastamancer
+
+    Your DECUServe Subscriber Number is US409112
+
+            DECUServe Username: CLARK_I     <=====                                                                          │····
+Initial DECUServe Password: 32471782    <=====
+
+rubarb327
+
+Redmond quests 5 (done)
+
+4,,6,7,12,14,15,17
+
+listy = [i * 10 if i % 4 == 0 else i for i in range(1,num+1) ]
+
+prints i, unless i is divisible by four
+=======
+    return ''.join(stam_parts)
+>>>>>>> 9efeefb094b6ffe518cf8af3e532bc5b4a505d51
+=======
+    return ''.join(stam_parts)
+>>>>>>> 9efeefb094b6ffe518cf8af3e532bc5b4a505d51
+=======
+    return ''.join(stam_parts)
+>>>>>>> 9efeefb094b6ffe518cf8af3e532bc5b4a505d51

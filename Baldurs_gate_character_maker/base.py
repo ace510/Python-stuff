@@ -1,9 +1,14 @@
+from PIL import Image, ImageGrab
+import pytesseract
+import pyautogui
+import time
 
 from PIL import Image
 import pytesseract
 import pyautogui
 import time
 from PIL import ImageGrab
+
 
 psm =''' pagesegmode values are:
   0 = Orientation and script detection (OSD) only.

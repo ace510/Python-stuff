@@ -9,7 +9,20 @@
             "type": "python",
             "request": "launch",
             "program": "${file}",
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}\\csv_data"
+=======
             "console": "integratedTerminal"
+>>>>>>> 9efeefb094b6ffe518cf8af3e532bc5b4a505d51
+=======
+            "console": "integratedTerminal"
+>>>>>>> 9efeefb094b6ffe518cf8af3e532bc5b4a505d51
+=======
+            "console": "integratedTerminal"
+>>>>>>> 9efeefb094b6ffe518cf8af3e532bc5b4a505d51
         }
     ]
 }
