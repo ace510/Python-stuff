@@ -10,9 +10,12 @@ with open('docs/service_discriptors.txt','w') as file:
 
 service_descriptor : dict = pricing_client.describe_services()
 
-for i in service_descriptor['Services']:
-    print(i)
-
 with open('docs/services.txt','w') as file:
     for item in service_descriptor['Services']:
         file.write(str(item))
+
+ec2_stuff= pricing_client.describe_services(
+    ServiceCode='AmazonEC2'
+)
+
+blarga = ec2_stuff['Services'][0]['AttributeNames']
