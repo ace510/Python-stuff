@@ -7,23 +7,10 @@ import time
 import os
 import asyncio
 
-
-with open('.token','r') as file:
-    for line in file:
-        QQQ_url = str(line)
-
-foo_dict =''
+payload_raw = 'https://support.na.sage.com/selfservice/viewdocument.do?noCount=true&externalId=64650&sliceId=1&isLoadPublishedVer=&docType=kc&docTypeID=DT_Article&stateId=3641&cmd=displayKC&dialogID=140247&ViewedDocsListHelper=com.kanisa.apps.common.BaseViewedDocsListHelperImpl&openedFromSearchResults=true'
+payload = 'https://support.na.sage.com/selfservice/viewdocument.do?noCount=true&externalId=64650'
 
 
-
-human_names = {
-    'BS_SPT_300CRE_SYS_Q_CT'     : '300 CRE',
-    'BS_SPT_300CRE_SYSCCB_Q_CT'  : '300 CRE callbacks',
-    'BS_SPT_100CON_Tech_CCB_Q_CT': '100 CON',
-    'BS_SPT_50C_Install_EN_Q_CT' : '50 Canada',
-    'BS_SPT_50US_ICU_Q_CT'       : '50 US',
-    'BS_SPT_50US_ICU_CCB_Q_CT'   : '50 US Callback',
-}
 
 options = webdriver.ChromeOptions()
 options.add_argument("--log-level=3")
@@ -33,24 +20,20 @@ options.add_argument("--disable-extensions")
 options.add_argument("--remote-debugging-port=0")
 options.add_argument("--headless")
 
-
-
 dc = DesiredCapabilities.CHROME
 dc['loggingPrefs'] = {'driver': 'OFF', 'server': 'OFF', 'browser': 'OFF'}
 
-driver = webdriver.Chrome(chrome_options=options, desired_capabilities=dc, executable_path= "C:\\Users\\IaClark\\OneDrive - Sage Software, Inc\\chromedriver_win32\\chromedriver.exe")
+driver = webdriver.Chrome(chrome_options=options, desired_capabilities=dc, executable_path= r'D:\\chromedriver\\chromedriver.exe')
 
 def screen_scrape(url):
-    while True:
-        driver.get(url)
+    driver.get(url)
 
-        driver_text = driver.find_element_by_tag_name('body').text
-        foo_list = driver_text.split('\n')
-        foo_dict = dict()
+    driver_text = driver.find_element_by_tag_name('body').text
+    foo_list = driver_text.split('\n')
+    return foo_list
+        
 
-        for i in foo_list:
-            stump = i.split(' ')
-            if len(stump) == 12:
-                foo_dict[stump[0]] = stump[1:]
+driver.get(payload)
+driver_text = driver.find_element_by_tag_name('body').text
 
-        return foo_dict
+print(driver_text)
