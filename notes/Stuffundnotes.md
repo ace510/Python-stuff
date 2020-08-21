@@ -26,10 +26,8 @@ Initial DECUServe Password: 32471782    <=====
 
 rubarb327
 
-Redmond quests 5 (done)
-
-4,,6,7,12,14,15,17
-
 listy = [i * 10 if i % 4 == 0 else i for i in range(1,num+1) ]
 
 prints i, unless i is divisible by four
+
+Ctrl + G: shows info in Nano
