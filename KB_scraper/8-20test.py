@@ -5,18 +5,15 @@ from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.keys import Keys
 import time
 import os
-import asyncio
 
 payload_raw = 'https://support.na.sage.com/selfservice/viewdocument.do?noCount=true&externalId=64650&sliceId=1&isLoadPublishedVer=&docType=kc&docTypeID=DT_Article&stateId=3641&cmd=displayKC&dialogID=140247&ViewedDocsListHelper=com.kanisa.apps.common.BaseViewedDocsListHelperImpl&openedFromSearchResults=true'
 payload = 'https://support.na.sage.com/selfservice/viewdocument.do?noCount=true&externalId=64650'
-
-
+payload_ween = "https://www.google.com/ncr"
 
 options = webdriver.ChromeOptions()
 options.add_argument("--log-level=3")
 options.add_argument("--window-size=10,10")
 options.add_argument("--test-type")
-options.add_argument("--disable-extensions")
 options.add_argument("--remote-debugging-port=0")
 options.add_argument("--headless")
 
@@ -25,15 +22,15 @@ dc['loggingPrefs'] = {'driver': 'OFF', 'server': 'OFF', 'browser': 'OFF'}
 
 driver = webdriver.Chrome(chrome_options=options, desired_capabilities=dc, executable_path= r'D:\\chromedriver\\chromedriver.exe')
 
-def screen_scrape(url):
-    driver.get(url)
 
-    driver_text = driver.find_element_by_tag_name('body').text
-    foo_list = driver_text.split('\n')
-    return foo_list
-        
+def scrape_page(url):
+    driver.get(url) # Load page
+    time.sleep(5)
 
-driver.get(payload)
-driver_text = driver.find_element_by_tag_name('body').text
+    element = driver.find_element_by_tag_name("body")
+    print(element)
+    print(element.get_attribute('innerHTML'))
 
-print(driver_text)
+driver.maximize_window()
+driver.get("https://www.google.com/ncr")
+print (driver.find_element_by_tag_name("body").text)
