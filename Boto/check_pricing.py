@@ -1,11 +1,16 @@
 import boto3
 
-def write_file(collection, file_name):
+def write_file(collection, file_name, new_eol = False):
+    if new_eol == True:
+        new_eol = '\n'
+    else:
+        new_eol = ''
+    
     file_string = str(file_name)
 
     with open(f'docs/{file_string}.txt','w') as file:
         for item in collection:
-            file.write(str(item))
+            file.write(str(item)+ new_eol )
 
 
 pricing_client = boto3.client('pricing')
@@ -25,4 +30,4 @@ ec2_stuff= pricing_client.describe_services(
 
 attribute_names = ec2_stuff['Services'][0]['AttributeNames']
 
-write_file(attribute_names,'attribute_names')
+write_file(attribute_names,'attribute_names', True)
