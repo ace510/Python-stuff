@@ -1,5 +1,12 @@
 import boto3
 
+def write_file(collection, file_name):
+    file_string = str(file_name)
+    with open(f'docs/{file_string}.txt','w') as file:
+        for item in collection:
+            file.write(str(item))
+
+
 pricing_client = boto3.client('pricing')
 
 service_descriptor : dict = pricing_client.describe_services()
@@ -19,3 +26,4 @@ ec2_stuff= pricing_client.describe_services(
 )
 
 blarga = ec2_stuff['Services'][0]['AttributeNames']
+print(blarga)
