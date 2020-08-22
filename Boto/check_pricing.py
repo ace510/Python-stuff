@@ -38,11 +38,15 @@ write_file(attribute_names,'attribute_names', True)
 #         ServiceCode = 'AmazonEC2',
 #         AttributeName= i
 #     ))
+attribute_dict = dict()
 
 for i in attribute_names:
     pricing_first_try =pricing_client.get_attribute_values(
         ServiceCode = 'AmazonEC2',
         AttributeName = i
     )
+    attribute_dict[i] = pricing_first_try['AttributeValues']
+    # print(i)
+    # print(pricing_first_try['AttributeValues'])
 
-    print(pricing_first_try['AttributeValues'])
+write_file(attribute_dict,'attributes',True)
