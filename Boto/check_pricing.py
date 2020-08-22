@@ -31,3 +31,10 @@ ec2_stuff= pricing_client.describe_services(
 attribute_names = ec2_stuff['Services'][0]['AttributeNames']
 
 write_file(attribute_names,'attribute_names', True)
+
+for i in attribute_names:
+    print(i)
+    print(pricing_client.get_attribute_values(
+        ServiceCode = 'AmazonEC2',
+        AttributeName= i
+    ))
