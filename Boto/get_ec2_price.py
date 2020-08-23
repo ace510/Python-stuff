@@ -20,4 +20,5 @@ testy = pricing_client.get_products(
 test_dict = json.loads(testy['PriceList'][0])
 write_file(test_dict.keys(),'pricelistparts',True)
 
-print(len(testy['PriceList']))
+write_file(testy['PriceList'],'availible_listings')
+
