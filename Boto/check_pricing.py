@@ -40,13 +40,16 @@ write_file(attribute_names,'attribute_names', True)
 #     ))
 attribute_dict = dict()
 
-for i in attribute_names:
+for attribute_name in attribute_names:
     pricing_first_try =pricing_client.get_attribute_values(
         ServiceCode = 'AmazonEC2',
-        AttributeName = i
+        AttributeName = attribute_name
     )
-    attribute_dict[i] = pricing_first_try['AttributeValues']
-    # print(i)
-    # print(pricing_first_try['AttributeValues'])
+    available_values = pricing_first_try['AttributeValues']
+    available_values_list = [item['Value'] for item in available_values]
+    # print(available_values_list)
 
-write_file(attribute_dict,'attributes',True)
+    attribute_dict[attribute_name]= available_values_list
+    
+
+
