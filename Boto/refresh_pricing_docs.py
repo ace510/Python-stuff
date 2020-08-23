@@ -25,20 +25,19 @@ def main():
     
     
     # this code grabs all the info specific to EC2, i'm grabbing all the
-    # attribute names and all their availible options
+    # attribute names specific to EC2
     ec2_stuff= pricing_client.describe_services(
         ServiceCode='AmazonEC2')
     attribute_names = ec2_stuff['Services'][0]['AttributeNames']
     write_file(attribute_names,'attribute_names', True)
 
-
+    # this code grabs all the possible options for each EC2 attribute
     attribute_dict = dict()
-
     for attribute_name in attribute_names:
         pricing_first_try =pricing_client.get_attribute_values(
             ServiceCode = 'AmazonEC2',
-            AttributeName = attribute_name
-        )
+            AttributeName = attribute_name)
+
         available_values = pricing_first_try['AttributeValues']
         available_values_list = [item['Value'] for item in available_values]
 
@@ -47,6 +46,7 @@ def main():
     with open('docs/attributes.txt','w+') as file:
         for key, value in attribute_dict.items():
             file.write(f'{key}: {value} \n')
+            
 
 if __name__ == "__main__":
     main()
