@@ -62,7 +62,7 @@ def is_content(x):
     if trial_request is None:
         return (False, test_url)
     
-    trial_request
+    # trial_request
 
 
     if trial_request.status not in (404,400,403, 504, 500, 502, 503):
