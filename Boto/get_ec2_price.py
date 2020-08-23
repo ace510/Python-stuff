@@ -22,3 +22,4 @@ write_file(test_dict.keys(),'pricelistparts',True)
 
 write_file(testy['PriceList'],'availible_listings')
 
+print(test_dict['terms'])
