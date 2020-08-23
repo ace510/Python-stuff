@@ -1,0 +1,5 @@
+product
+serviceCode
+terms
+version
+publicationDate
