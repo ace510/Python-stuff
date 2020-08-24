@@ -3,6 +3,7 @@ from unsync import unsync
 import urllib3
 import itertools
 import moon
+import time
 
 def URL_iterator():
     for i in range(0,128):
@@ -53,11 +54,17 @@ retries=urllib3.Retry(3, raise_on_redirect=False))
 
 search_tator = URL_iterator()
 round_num = 0
+proc_time =time.localtime()
+batch_size = 10000
     
 while True:
     round_num += 1
     print(f'currently computing round: {round_num}')
-    good_urls = [is_content(next(search_tator)) for _ in range(10000)]
+    
+    the_now = time.localtime()
+
+
+    good_urls = [is_content(next(search_tator)) for _ in range(batch_size)]
 
     for url in good_urls:
         blarga = url.result()
