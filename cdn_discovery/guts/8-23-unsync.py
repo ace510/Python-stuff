@@ -63,7 +63,7 @@ while True:
     
     the_now =int(time.time())
     elapsed_time = the_now - proc_time
-    print(f'it\'s taking {elapsed_time/10000} per operation')
+    print(f'it\'s taking {elapsed_time/batch_size*1000} per operation')
     proc_time = the_now
 
     good_urls = [is_content(next(search_tator)) for _ in range(batch_size)]
