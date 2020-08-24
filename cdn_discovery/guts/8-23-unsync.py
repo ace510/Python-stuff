@@ -62,6 +62,8 @@ while True:
     print(f'currently computing round: {round_num}')
     
     the_now = time.localtime()
+    elapsed_time = the_now - proc_time
+    print(f'')
 
 
     good_urls = [is_content(next(search_tator)) for _ in range(batch_size)]
