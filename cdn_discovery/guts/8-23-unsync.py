@@ -4,7 +4,7 @@ import urllib3
 import itertools
 import moon
 
-@unsync
+@unsync(cpu_bound=True)
 def is_content(x):
     payload = ''.join(x)
     test_url = confidential.preamble + payload
@@ -46,8 +46,13 @@ http = urllib3.PoolManager(timeout=30,
 retries=urllib3.Retry(3, raise_on_redirect=False))
 
 for i in range(128):
-    search_tator =itertools.combinations_with_replacement(moon.search_space, 3)
+    print(f'working on range: {i}')
+    search_tator =itertools.combinations_with_replacement(moon.search_space, i)
 
-    good_urls = [is_content(url) for url in search_tator]
+    good_urls = [is_content(url) for url in search_tator if url]
 
-    print([url.result() for url in good_urls])
+    for url in good_urls:
+        blarga = url.result()
+
+        if blarga:
+            print(blarga)
