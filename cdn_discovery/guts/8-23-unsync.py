@@ -54,17 +54,17 @@ retries=urllib3.Retry(3, raise_on_redirect=False))
 
 search_tator = URL_iterator()
 round_num = 0
-proc_time =time.localtime()
+proc_time =int(time.time())
 batch_size = 10000
     
 while True:
     round_num += 1
     print(f'currently computing round: {round_num}')
     
-    the_now = time.localtime()
+    the_now =int(time.time())
     elapsed_time = the_now - proc_time
-    print(f'')
-
+    print(f'it\'s taking {elapsed_time/10000} per operation')
+    proc_time = the_now
 
     good_urls = [is_content(next(search_tator)) for _ in range(batch_size)]
 
