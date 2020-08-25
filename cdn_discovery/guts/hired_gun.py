@@ -1,12 +1,8 @@
 import confidential
 import moon
 import itertools
+from 8-23-unsync import URL_it
 
-def URL_iterator():
-    for i in range(0,128):
-        for j in itertools.combinations_with_replacement(moon.search_space, i):
-            payload = ''.join(j)
-            yield ''.join((confidential.preamble,payload))
 
 
 
