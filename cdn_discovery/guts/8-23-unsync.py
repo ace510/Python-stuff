@@ -18,7 +18,7 @@ def is_content(x):
     trial_request = None
     # payload is the thing to stick at the end of the domain you want to test
     # test_url is the whole url
-    # initializign trial_request to none, so if it gets changed later, means 
+    # initializing trial_request to none, so if it gets changed later, means 
     # there is results
 
     try:
@@ -41,14 +41,13 @@ def is_content(x):
         # 403 is  file denied access
         # 504 is a weird bug, maybe rate limiting?
         # 502 is bad gateway
-        # 503 means service is overloaded or unavailible
+        # 503 means service is overloaded or unavailable
         return (test_url, trial_request.status)
     
     else:
         return None
 
-headers = urllib3.make_headers(keep_alive=True, accept_encoding=True)
-    
+headers = urllib3.make_headers(keep_alive=True, accept_encoding=True)   
 http = urllib3.PoolManager(timeout=30, headers=headers,
 retries=urllib3.Retry(3, raise_on_redirect=False))
 
