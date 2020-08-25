@@ -47,9 +47,9 @@ def is_content(x):
     else:
         return None
 
-
+headers = urllib3.make_headers(keep_alive=True, accept_encoding=True)
     
-http = urllib3.PoolManager(timeout=30,
+http = urllib3.PoolManager(timeout=30, headers=headers,
 retries=urllib3.Retry(3, raise_on_redirect=False))
 
 search_tator = URL_iterator()
@@ -63,7 +63,7 @@ while True:
     
     the_now =int(time.time())
     elapsed_time = the_now - proc_time
-    print(f'it\'s taking {elapsed_time/batch_size*1000} per operation')
+    print(f'it\'s taking {elapsed_time/batch_size*100} ms per operation')
     proc_time = the_now
 
     good_urls = [is_content(next(search_tator)) for _ in range(batch_size)]
