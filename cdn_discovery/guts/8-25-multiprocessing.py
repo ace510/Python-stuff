@@ -48,31 +48,31 @@ def is_content(task_queue,result_queue):
         
         result_queue.put(output_set)
 
+if __name__ == "__main__":
+    PROCS = multiprocessing.cpu_count()
 
-PROCS = multiprocessing.cpu_count()
+    # headers = urllib3.make_headers(keep_alive=True, accept_encoding=True)  
+    # http = urllib3.PoolManager(timeout=30, headers=headers,
+    # retries=urllib3.Retry(3, raise_on_redirect=False))
 
-# headers = urllib3.make_headers(keep_alive=True, accept_encoding=True)  
-# http = urllib3.PoolManager(timeout=30, headers=headers,
-# retries=urllib3.Retry(3, raise_on_redirect=False))
+    url_tator = URL_iterator()
 
-url_tator = URL_iterator()
+    task_queue =multiprocessing.Queue(maxsize=PROCS*2)
+    result_queue =multiprocessing.Queue(maxsize=PROCS)
 
-task_queue =multiprocessing.Queue(maxsize=PROCS*2)
-result_queue =multiprocessing.Queue(maxsize=PROCS)
-
-process_list = []
-for proc in range(PROCS):
-    p= multiprocessing.Process(target=is_content, args=(task_queue,result_queue,))
-    p.start()
-    process_list.append(p)
+    process_list = []
+    for _ in range(PROCS):
+        p= multiprocessing.Process(target=is_content, args=(task_queue,result_queue,))
+        p.start()
 
 
-while True:
-    while task_queue.qsize() < PROCS:
-        task_queue.put([next(url_tator) for i in range(10000)])
+    while True:
+        print(f'task_queue Length: {task_queue.qsize()} result Queue length {result_queue.qsize()}')
+        while task_queue.qsize() < PROCS:
+            task_queue.put([next(url_tator) for i in range(10000)])
 
-    result_cont  = result_queue.get()
-    for url in result_cont:
-        print(url)
+        result_cont  = result_queue.get()
+        for url in result_cont:
+            print(url)
 
 
