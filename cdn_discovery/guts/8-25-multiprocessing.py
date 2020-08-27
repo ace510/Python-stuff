@@ -4,6 +4,7 @@ import itertools
 import moon
 import time
 import multiprocessing
+from queue import Empty
 
 def URL_iterator():
     for length in range(0,128):
@@ -36,17 +37,17 @@ def is_content(task_queue,result_queue):
             print('whoops that request failed')
             return None
 
-        if trial_request.status not in (404,400,403, 504, 500, 502, 503):
+        if trial_request.status not in (404,403): # ,400,403, 504, 500, 502, 503):
             # this is a list of 'bad' status codes
             # so far 404 is generic URL not found
             # 400 is something that should trigger an internal app but doesn't
             # 403 is  file denied access
             # 504 is a weird bug, maybe rate limiting?
             # 502 is bad gateway
-            # 503 means service is overloaded or unavailible
-            output_set.add(test_url)
+            # 503 means service is overloaded or unavailable
+            result_queue.put((test_url,trial_request.status))
         
-        result_queue.put(output_set)
+        
 
 if __name__ == "__main__":
     PROCS = multiprocessing.cpu_count()
@@ -60,19 +61,20 @@ if __name__ == "__main__":
     task_queue =multiprocessing.Queue(maxsize=PROCS*2)
     result_queue =multiprocessing.Queue(maxsize=PROCS)
 
-    process_list = []
-    for _ in range(PROCS):
-        p= multiprocessing.Process(target=is_content, args=(task_queue,result_queue,))
-        p.start()
+    p= multiprocessing.Process(target=is_content, args=(task_queue,result_queue,))
+    p.start()
 
 
     while True:
-        print(f'task_queue Length: {task_queue.qsize()} result Queue length {result_queue.qsize()}')
+        # print(f'task_queue Length: {task_queue.qsize()} result Queue length {result_queue.qsize()}')
         while task_queue.qsize() < PROCS:
-            task_queue.put([next(url_tator) for i in range(10000)])
-
-        result_cont  = result_queue.get()
-        for url in result_cont:
-            print(url)
-
+            task_queue.put([next(url_tator) for _ in range(10000)])
+        
+        try:
+            result_cont  = result_queue.get(block=False)
+        except Empty:
+            pass
+        else:
+            print(f'{result_cont[0]} returned status: {result_cont[1]}')
+        time.sleep(0.1)
 
