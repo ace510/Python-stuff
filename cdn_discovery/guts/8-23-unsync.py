@@ -64,11 +64,11 @@ while True:
     elapsed_time = the_now - proc_time
     print(f'it\'s taking {elapsed_time/batch_size*1000} ms per operation')
     proc_time = the_now
-
+    
     good_urls = [is_content(next(search_tator)) for _ in range(batch_size)]
 
     for url in good_urls:
-        blarga = url.result()
+        url_result = url.result()
 
-        if blarga:
-            print(blarga)
+        if url_result:
+            print(url_result)
