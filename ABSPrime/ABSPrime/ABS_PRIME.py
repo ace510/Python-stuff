@@ -6,10 +6,10 @@ import logging
 logging.basicConfig(level=logging.INFO, format=' %(asctime)s - %(levelname)s '
     '- %(message)s')
 
-ppfactors1 = ppfactors.ppfactors
+ppfactors1 = set()
 
 try:
-    for i in xrange(2, sys.maxint):
+    for i in range(2, sys.maxint):
         prime = True
         for factor in ppfactors1:        
             if i == factor:
@@ -29,7 +29,7 @@ try:
             logging.debug(str(i) + ' is not prime!')
             pass
 except (KeyboardInterrupt):
-    print "stopping factors"    
+    print("stopping factors")
 
 ppfile = open('ppfactors.py', 'w')
 logging.info('opening file')
