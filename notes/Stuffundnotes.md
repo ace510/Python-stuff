@@ -20,3 +20,8 @@ listy = [i * 10 if i % 4 == 0 else i for i in range(1,num+1) ]
 prints i, unless i is divisible by four
 
 Ctrl + G: shows info in Nano
+
+import logging
+
+logging.basicConfig( 
+    level=logging.DEBUG)
