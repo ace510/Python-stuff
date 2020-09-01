@@ -1,11 +1,14 @@
 from nose.tools import *
 import Flask_Quiz
 
+
 def setup():
-    print 'Setup!'
+    print "Setup!"
+
 
 def teardown():
-    print 'Tear down!'
+    print "Tear down!"
+
 
 def test_basic():
-    print 'I ran, I ran so far away'
+    print "I ran, I ran so far away"

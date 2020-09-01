@@ -13,7 +13,7 @@ pygame.init()
 # 640 by 480 is default screen size
 size = (640, 480)
 screen = pygame.display.set_mode(size)
-HACK_FONT = pygame.font.SysFont('Hack', 22, False, False)
+HACK_FONT = pygame.font.SysFont("Hack", 22, False, False)
 rect_x = 50
 rect_y = 50
 rect_change_x = 3
@@ -34,7 +34,7 @@ def abs_increment(number):
     elif number >= 0:
         number += 1
     else:
-        print 'improper number given'
+        print "improper number given"
     return number
 
 
@@ -45,12 +45,12 @@ def abs_decrement(number):
     elif number > 0:
         number -= 1
     else:
-        print 'improper input given'
+        print "improper input given"
     return number
 
 
 # this is the name of the game
-pygame.display.set_caption('Bouncing Rectangle')
+pygame.display.set_caption("Bouncing Rectangle")
 
 # this code loops until the game closes
 done = False
@@ -67,7 +67,7 @@ while not done:
 
     # Game logic goes here (score, timers)
     FPS_count = str(int(clock.get_fps()))
-    Game_Timer = str((pygame.time.get_ticks()/1000))
+    Game_Timer = str((pygame.time.get_ticks() / 1000))
     FPS_counter_text = HACK_FONT.render(FPS_count, False, GREEN)
     Game_Timer_text = HACK_FONT.render(Game_Timer, False, GREEN)
 

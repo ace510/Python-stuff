@@ -1,2 +1,2 @@
-with open('herp') as file:
+with open("herp") as file:
     file.writelines(range(352767))

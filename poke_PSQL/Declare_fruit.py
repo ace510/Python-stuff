@@ -1,5 +1,5 @@
 import sqlalchemy_pervasive
-import os 
+import os
 import sys
 from sqlalchemy import Column, ForeignKey, Integer, String
 from sqlalchemy.ext.declarative import declarative_base
@@ -8,10 +8,10 @@ from sqlalchemy import create_engine
 import pyodbc
 
 
-Base=declarative_base()
-engine = create_engine('pydobc:///ORB514810/demodata')
+Base = declarative_base()
+engine = create_engine("pydobc:///ORB514810/demodata")
 
-print('deez nuts')
+print("deez nuts")
 # psquirrel = pyodbc.connect('Driver={Pervasive ODBC Interface};ServerName=Localhost;dbq=CONSTRUCDB2BDB0283')
 # pcursor = psquirrel.cursor()
 
@@ -25,9 +25,9 @@ print('deez nuts')
 # for row in prows:
 #     print(row)
 
-#for item in xrange(len(prows[1])):
+# for item in xrange(len(prows[1])):
 #
 #   print 'item %s is %s' % (item, prows[1][item])
-    
 
-print('massive chungus')
+
+print("massive chungus")

@@ -1,7 +1,3 @@
 import pickle
 
-output = open('output', 'r')
-
-
-
-
+output = open("output", "r")

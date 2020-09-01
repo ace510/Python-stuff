@@ -12,17 +12,17 @@ pygame.init()
 # 640 by 480 is default screen size
 size = (480, 640)
 screen = pygame.display.set_mode(size)
-background_image = pygame.image.load_basic('Background.bmp').convert()
+background_image = pygame.image.load_basic("Background.bmp").convert()
 
 # setting image called Background.bmp as our background, converting it as well
-player_img = pygame.image.load_basic('Ship_orange.bmp').convert()
+player_img = pygame.image.load_basic("Ship_orange.bmp").convert()
 # setting chromakey for player avatar, isn't strictly needed
 player_img.set_colorkey(BLACK)
 
 fire_sound = pygame.mixer.Sound("sfx_laser1.ogg")
 
 # this is the name of the game
-pygame.display.set_caption('Macog')
+pygame.display.set_caption("Macog")
 
 # this code loops until the game closes
 done = False

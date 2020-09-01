@@ -1,10 +1,11 @@
-'''
+"""
     to run tests on mac: python3 -m doctest triathlon.py -v
     to run tests on Win: python -m doctest triathlon.py -v
-'''
+"""
+
 
 def triathlon(hours_cycling, hours_running, hours_swimming):
-    '''
+    """
     Calculate the number of pounds lost from doing a triathlon
     based on the number of hours spent at each exercise
 
@@ -45,7 +46,7 @@ def triathlon(hours_cycling, hours_running, hours_swimming):
     >>> round(triathlon(5.5, 3.12, 2.22), 2)
     0.91
 
-    '''
-    calories = (hours_cycling * 200 + hours_running * 475 + hours_swimming * 275)
+    """
+    calories = hours_cycling * 200 + hours_running * 475 + hours_swimming * 275
 
     return calories / 3500

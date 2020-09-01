@@ -1,12 +1,13 @@
 import math
 
-'''
+"""
     to run tests on mac: python3 -m doctest car_speed.py -v
     to run tests on Win: python -m doctest car_speed.py -v
-'''
+"""
+
 
 def car_speed(distance_of_skid):
-    '''
+    """
     Calculate the speed in MPH of a car that skidded
     d feet on dry concrete when the brakes were applied
 
@@ -41,8 +42,8 @@ def car_speed(distance_of_skid):
     >>> round(car_speed(12345), 2)
     544.32
 
-    '''
+    """
     skid_float = float(distance_of_skid)
     mph = math.sqrt(skid_float * 24)
-    
+
     return mph

@@ -1,11 +1,11 @@
-
-'''
+"""
     to run tests on mac: python3 -m doctest cost_of_running_lightbulb.py -v
     to run tests on Win: python -m doctest cost_of_running_lightbulb.py -v
-'''
+"""
+
 
 def cost_of_running_lightbulb(cents_per_kw_hour, bulb_wattage, hours_on):
-    '''
+    """
     Calculate the cost of running a lightbulb using the formula
     wattage x hours used divided by 1000 x cost per kWh in cents
 
@@ -39,6 +39,6 @@ def cost_of_running_lightbulb(cents_per_kw_hour, bulb_wattage, hours_on):
     >>> round(cost_of_running_lightbulb(1176, 127, 56789), 2)
     6.13
 
-    '''
-    grundle = (bulb_wattage * hours_on)/(1000*cents_per_kw_hour)
+    """
+    grundle = (bulb_wattage * hours_on) / (1000 * cents_per_kw_hour)
     return grundle

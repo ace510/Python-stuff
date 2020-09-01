@@ -18,21 +18,26 @@ Session = sessionmaker(bind=rotary_engine)
 from sqlalchemy import Column, Integer, String
 from sqlalchemy import UniqueConstraint
 
+
 class User(all_ur_base):
-    __tablename__ = 'Pyton'
+    __tablename__ = "Pyton"
 
     id = Column(Integer, primary_key=True)
     name = Column(String)
     favorite_number = Column(Integer)
-    UniqueConstraint('name')
+    UniqueConstraint("name")
 
     def __repr__(self):
-        return "<User(name= %s, favorite number = %s >" % self.name, self.favorite_number
+        return (
+            "<User(name= %s, favorite number = %s >" % self.name,
+            self.favorite_number,
+        )
+
 
 Session = Session()
 for i in range(10000):
     number = random.randrange(1000)
-    name = ''.join(random.choice(string.ascii_letters) * 5)
-    trial_user = User(name = name,favorite_number = number)
+    name = "".join(random.choice(string.ascii_letters) * 5)
+    trial_user = User(name=name, favorite_number=number)
     Session.add(trial_user)
 Session.commit()

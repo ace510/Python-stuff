@@ -1,10 +1,13 @@
 import nose.tools
-import ..blog
+from .. import blog
+
 
 def setup_blog():
+    pass
 
 
+# @with_setup(setup_blog):
 
-@with_setup(setup_blog):
-def test_index():
+
+def text_index():
     blog.index()

@@ -7,7 +7,7 @@ Base = declarative_base()
 
 
 class Post(Base):
-    __tablename__ = 'post'
+    __tablename__ = "post"
 
     id = Column(Integer, primary_key=True)
     body = Column(String)
@@ -16,23 +16,32 @@ class Post(Base):
     title = Column(String)
 
     def __repr__(self):
-        return "<Posts(body='%s',date='%s',author='%s'," \
-               "title='%s'>" % (self.body, self.date, self.author,
-                                self.title)
+        return "<Posts(body='%s',date='%s',author='%s'," "title='%s'>" % (
+            self.body,
+            self.date,
+            self.author,
+            self.title,
+        )
 
 
-print 'adding new db connection'
-engine = create_engine('sqlite:///:test', echo=True)
+print "adding new db connection"
+engine = create_engine("sqlite:///:test", echo=True)
 Base.metadata.create_all(engine)
 Session = sessionmaker(bind=engine)
 db = Session()
 
-print 'marker ho'
+print "marker ho"
 if db.query(Post).first() is None:
-    print 'it is nothing'
+    print "it is nothing"
 
-db.add(Post(title='fixing the initial db seeding', body='What he said',
-            date='8-2-2018', author='Ian Clark'))
+db.add(
+    Post(
+        title="fixing the initial db seeding",
+        body="What he said",
+        date="8-2-2018",
+        author="Ian Clark",
+    )
+)
 
 if db.query(Post).first():
-    print 'something here'
+    print "something here"

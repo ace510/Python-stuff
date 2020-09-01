@@ -7,7 +7,7 @@ Base = declarative_base()
 
 
 class Post(Base):
-    __tablename__ = 'post'
+    __tablename__ = "post"
 
     id = sqlalchemy.Column(sqlalchemy.Integer, primary_key=True)
     body = sqlalchemy.Column(sqlalchemy.String)
@@ -16,16 +16,18 @@ class Post(Base):
     title = sqlalchemy.Column(sqlalchemy.String)
 
     def __repr__(self):
-        return "<Posts(body='%s',date='%s',author='%s'," \
-               "title='%s'>" % (self.body, self.date, self.author,
-                                self.title)
+        return "<Posts(body='%s',date='%s',author='%s'," "title='%s'>" % (
+            self.body,
+            self.date,
+            self.author,
+            self.title,
+        )
 
 
 def get_db():
-    if 'db' not in g:
-        print('adding new db connection')
-        g.engine = sqlalchemy.create_engine('sqlite:///instance/:memory',
-                                            echo=True)
+    if "db" not in g:
+        print("adding new db connection")
+        g.engine = sqlalchemy.create_engine("sqlite:///instance/:memory", echo=True)
         Base.metadata.create_all(g.engine)
         g.Session = sessionmaker(bind=g.engine)
         g.db = g.Session()
@@ -36,7 +38,7 @@ def get_db():
             #              author='Ian Clark',
             #              title='Achieved minimum viable product'))
             # g.db.add(Post(body='changed to relational database', date='today',
-                    # author='Ian Clark', title='next, to remove posts'))
+            # author='Ian Clark', title='next, to remove posts'))
 
             g.db.commit()
             g.db.close()

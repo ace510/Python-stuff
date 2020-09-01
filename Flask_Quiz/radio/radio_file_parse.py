@@ -7,5 +7,3 @@ import pprint
 import subprocess
 import hashlib
 import os
-
-

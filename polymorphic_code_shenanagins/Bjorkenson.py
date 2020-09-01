@@ -3,8 +3,9 @@ import itertools
 
 search_space = string.printable
 
+
 def exeggutor(input_thingy):
-    results =''
+    results = ""
     try:
         results = exec(input_thingy)
     except (SyntaxError, NameError, AttributeError):
@@ -31,12 +32,13 @@ def exeggutor(input_thingy):
 
 def main():
     for i in range(72):
-        permie = itertools.combinations_with_replacement(search_space, i )
+        permie = itertools.combinations_with_replacement(search_space, i)
         for objecti in permie:
-            permie_string = ''.join(objecti)
+            permie_string = "".join(objecti)
             output = exeggutor(permie_string)
             if output:
                 print(output)
-                
+
+
 if __name__ == "__main__":
     main()

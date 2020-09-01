@@ -1,14 +1,17 @@
 import confidential
 import moon
 import itertools
-from 8-23-unsync import URL_it
-
-
-
-
 import asyncio
 import aiohttp
 from aiohttp import ClientSession, ClientConnectorError
+
+
+def URL_iterator():
+    for i in range(0, 128):
+        for j in itertools.combinations_with_replacement(moon.search_space, i):
+            payload = "".join(j)
+            yield "".join((confidential.preamble, payload))
+
 
 async def fetch_html(url: str, session: ClientSession, **kwargs) -> tuple:
     try:
@@ -17,17 +20,17 @@ async def fetch_html(url: str, session: ClientSession, **kwargs) -> tuple:
         return (url, 404)
     return (url, resp.status)
 
+
 async def make_requests(urls, **kwargs) -> None:
     async with ClientSession() as session:
         tasks = []
         for url in urls:
-            tasks.append(
-                fetch_html(url=url, session=session, **kwargs)
-            )
+            tasks.append(fetch_html(url=url, session=session, **kwargs))
         results = await asyncio.gather(*tasks)
 
     for result in results:
-        print(f'{result[1]} - {str(result[0])}')
+        print(f"{result[1]} - {str(result[0])}")
+
 
 if __name__ == "__main__":
     import pathlib
@@ -36,7 +39,6 @@ if __name__ == "__main__":
     assert sys.version_info >= (3, 7), "Script requires Python 3.7+."
     here = pathlib.Path(__file__).parent
 
-    
     urls = URL_iterator()
 
     asyncio.run(make_requests(urls=urls))

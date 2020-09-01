@@ -1,4 +1,4 @@
-foooooooo = 'laaaaaaaaaaaaaaaaaard'
-baaaz = 'spam'
+foooooooo = "laaaaaaaaaaaaaaaaaard"
+baaaz = "spam"
 
 print(fooooooooazz)

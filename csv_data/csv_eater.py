@@ -1,7 +1,7 @@
 import csv, string
 from collections import Counter
 
-csv_file = open('foia_150k_plus.csv')
+csv_file = open("foia_150k_plus.csv")
 reader = csv.reader(csv_file)
 table = str.maketrans(dict.fromkeys(string.punctuation))
 
@@ -9,17 +9,16 @@ table = str.maketrans(dict.fromkeys(string.punctuation))
 
 schema = next(reader)
 # ['LoanRange', 'BusinessName', 'Address', 'City', 'State', 'Zip', 'NAICSCode',
-#  'BusinessType', 'RaceEthnicity', 'Gender', 'Veteran', 'NonProfit', 
+#  'BusinessType', 'RaceEthnicity', 'Gender', 'Veteran', 'NonProfit',
 # 'JobsRetained', 'DateApproved', 'Lender', 'CD']
 
 for company in reader:
-    if 'sage' in company[1].lower().split(' ') and 'software' in company[1].lower().split(' '): # and company[4] == 'OR'
+    if "sage" in company[1].lower().split(" ") and "software" in company[
+        1
+    ].lower().split(
+        " "
+    ):  # and company[4] == 'OR'
         print(company)
-
-
-
-
-
 
 
 # common_terms = Counter()

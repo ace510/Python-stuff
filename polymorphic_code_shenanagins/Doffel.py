@@ -3,21 +3,23 @@ import random
 
 # itertools.permutations(search_space, i )
 chain_space = [i for i in search_space]
-chain_space.append('Cheese')
+chain_space.append("Cheese")
+
 
 def def_jam():
     while True:
         output_lis = []
         for i in range(72):
             letter = random.choice(chain_space)
-            if letter != 'Cheese':
+            if letter != "Cheese":
                 output_lis.append(letter)
             else:
                 break
-        output_str = ''.join(output_lis)
+        output_str = "".join(output_lis)
         yield output_str
 
-output = ''
+
+output = ""
 
 teth = def_jam()
 

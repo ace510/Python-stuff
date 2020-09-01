@@ -10,15 +10,15 @@ def create_app(test_config=None):
     # this function creates the Flask app
     app = Flask(__name__, instance_relative_config=True)
     app.config.from_mapping(
-        SECRET_KEY='Haderach',
-        DATABASE=os.path.join(app.instance_path, 'quiz.sqlite'),
-        TODODATABASE=os.path.join(app.instance_path, 'db.json')
+        SECRET_KEY="Haderach",
+        DATABASE=os.path.join(app.instance_path, "quiz.sqlite"),
+        TODODATABASE=os.path.join(app.instance_path, "db.json"),
     )
 
     if test_config is None:
         # if test_config is true, use supplied config, if not revert to
         # instance config
-        app.config.from_pyfile('config.py', silent=True)
+        app.config.from_pyfile("config.py", silent=True)
         # config.py should be used to store anything confidential
     else:
         app.config.from_mapping(test_config)
@@ -30,10 +30,11 @@ def create_app(test_config=None):
         pass
 
     # a simple Hello World page
-    @app.route('/hello')
+    @app.route("/hello")
     def hello():
-        return 'Hello, World! \r\n Your random number of the day is: ' + str(
-            random.randrange(1, 32767))
+        return "Hello, World! \r\n Your random number of the day is: " + str(
+            random.randrange(1, 32767)
+        )
 
     # from . import cooper
     # cooper.init_app(app)
@@ -45,10 +46,8 @@ def create_app(test_config=None):
     # app.register_blueprint(blog.bp)
     # app.add_url_rule('/', endpoint='index')
 
-    
     app.register_blueprint(radioquiz.bp)
 
-    
     app.register_blueprint(todo.bp)
 
     return app

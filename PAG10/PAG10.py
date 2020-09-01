@@ -21,7 +21,7 @@ size = (640, 480)
 screen = pygame.display.set_mode(size)
 
 # this is the name of the game
-pygame.display.set_caption('name o game')
+pygame.display.set_caption("name o game")
 
 # Make mouse invisible
 pygame.mouse.set_visible(False)
@@ -38,7 +38,7 @@ y_coord = 10
 joystick_count = pygame.joystick.get_count()
 controller_enabled = False
 if 0 < joystick_count <= 2:
-    print 'controller recognized'
+    print "controller recognized"
     controller_enabled = True
     my_joystick = pygame.joystick.Joystick(0)
     my_joystick.init()
@@ -48,7 +48,7 @@ if joystick_count > 2:
     print "Error, game only works with one controller, strangeness may occur"
     controller_enabled = False
 elif joystick_count < 0 and joystick_count <= 2:
-    print 'controller recognized'
+    print "controller recognized"
     controller_enabled = True
     my_joystick = pygame.joystick.Joystick(0)
     my_joystick.init()

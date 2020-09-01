@@ -7,4 +7,4 @@ for i in range(10):
     for j in tater:
         langy += 1
 
-    print(f'a string of {i} length has {langy} possibilites')
+    print(f"a string of {i} length has {langy} possibilites")
