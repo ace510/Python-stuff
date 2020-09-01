@@ -27,6 +27,8 @@ def exeggutor(input_thingy):
     except IndexError:
         # captured 'km'[8] makes sense
         pass
+    except SyntaxWarning:
+        pass
     return results
 
 
@@ -38,6 +40,7 @@ def main():
             output = exeggutor(permie_string)
             if output:
                 print(output)
+                _ = input('keep searching?')
 
 
 if __name__ == "__main__":
