@@ -4,6 +4,7 @@ import urllib3
 import itertools
 import moon
 import time
+import logging
 
 
 def URL_iterator():
@@ -11,6 +12,7 @@ def URL_iterator():
         for j in itertools.combinations_with_replacement(moon.search_space, i):
             payload = "".join(j)
             yield "".join((confidential.preamble, payload))
+        print(f'done with range {i}')
 
 
 @unsync
@@ -62,7 +64,7 @@ batch_size = 10000
 
 while True:
     round_num += 1
-    print(f"currently computing round: {round_num}")
+    logging.info(f"currently computing round: {round_num}")
 
     the_now = int(time.time())
     elapsed_time = the_now - proc_time
