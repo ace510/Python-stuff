@@ -6,19 +6,19 @@ import moon
 import time
 import logging
 
+logging.basicConfig(
+    level=logging.INFO)
 
 def URL_iterator():
     for i in range(0, 128):
         for j in itertools.combinations_with_replacement(moon.search_space, i):
             payload = "".join(j)
             yield "".join((confidential.preamble, payload))
-        print(f'done with range {i}')
+        logging.info(f'done with range {i}')
 
 
 @unsync
-def is_content(x):
-    payload = "".join(x)
-    test_url = confidential.preamble + payload
+def is_content(test_url):
     trial_request = None
     # payload is the thing to stick at the end of the domain you want to test
     # test_url is the whole url
@@ -54,6 +54,8 @@ def is_content(x):
 
 headers = urllib3.make_headers(keep_alive=True, accept_encoding=True)
 http = urllib3.PoolManager(
+    maxsize = 100,
+    block = True,
     timeout=30, headers=headers, retries=urllib3.Retry(3, raise_on_redirect=False)
 )
 
@@ -62,13 +64,15 @@ round_num = 0
 proc_time = int(time.time())
 batch_size = 10000
 
+
 while True:
     round_num += 1
     logging.info(f"currently computing round: {round_num}")
 
     the_now = int(time.time())
     elapsed_time = the_now - proc_time
-    print(f"it's taking {elapsed_time/batch_size*1000} ms per operation")
+    logging.info(f'took {elapsed_time} for this batch')
+    logging.info(f"it's taking {elapsed_time/batch_size*1000} ms per operation")
     proc_time = the_now
 
     good_urls = [is_content(next(search_tator)) for _ in range(batch_size)]
