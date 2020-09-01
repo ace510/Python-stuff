@@ -1,8 +1,9 @@
 import string
 import itertools
+import logging
 
 search_space = string.printable
-
+logging.captureWarnings(True)
 
 def exeggutor(input_thingy):
     results = ""
