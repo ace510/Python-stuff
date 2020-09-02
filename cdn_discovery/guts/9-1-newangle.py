@@ -31,3 +31,6 @@ driver = webdriver.Chrome(
 )
 
 driver.get(new_preamble)
+time.sleep(60)
+
+
