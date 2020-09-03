@@ -32,5 +32,6 @@ driver = webdriver.Chrome(
 
 driver.get(new_preamble)
 time.sleep(15)
+innerHTML = driver.execute_script("return document.body.innerHTML")
 
 print(innerHTML)
