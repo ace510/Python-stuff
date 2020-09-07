@@ -24,11 +24,10 @@ driver = webdriver.Chrome(
     executable_path=r"D:\\chromedriver\\chromedriver.exe",
 )
 
-driver.get(payload)
-# time.sleep(15)
-innerHTML = driver.execute_script("return document.body.innerHTML")
+while True:
+    driver.get(payload)
+    innerHTML = driver.execute_script("return document.body.innerHTML")
+    print(innerHTML[innerHTML.find('<h3>') + 4 : innerHTML.find('</h3>')])
+    time.sleep(600)
 
-print(innerHTML.count('<h3>'))
-
-'<h3>(in 82,024 seconds)</h3>'
 
