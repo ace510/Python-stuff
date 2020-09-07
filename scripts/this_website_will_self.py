@@ -28,6 +28,6 @@ while True:
     driver.get(payload)
     innerHTML = driver.execute_script("return document.body.innerHTML")
     print(innerHTML[innerHTML.find('<h3>') + 4 : innerHTML.find('</h3>')])
-    time.sleep(600)
+    time.sleep(3600)
 
 
