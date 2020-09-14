@@ -6,7 +6,7 @@ nope_threshold = 1
 bad_strings = ("Request timed out", " Temporary failure", "could not find host")
 # ping_command ='ping gaqverintapp01.gs.adinternal.com'
 # ping_command = "ping www.google.com"
-ping_command = 'ping www.myphysicslab.com'
+ping_command = 'ping farley'
 while True:
     up = True
     print("pinging")
