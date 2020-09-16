@@ -27,4 +27,7 @@ logging.basicConfig(
     level=logging.DEBUG)
 
 DESK POWER STIP ALLOCATION
-1. XBOX    
+1. XBOX
+2. Work Comp
+3. Desk Ethernet Switch
+4. USB charger hub (switch, tablet)    
