@@ -25,3 +25,6 @@ import logging
 
 logging.basicConfig(
     level=logging.DEBUG)
+
+DESK POWER STIP ALLOCATION
+1. XBOX    
