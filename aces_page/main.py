@@ -7,10 +7,14 @@ from jinja2 import (
     ModuleLoader,
 )
 import os
+from os import path
+from pathlib import Path
 
 
 def publish(template_name, publish_name, env, contents, contents_2):
-    output_folder = "C:\\valley_forge\\ace510.github.io\\"
+    if not path.exists('output'):
+        os.makedirs('output')
+    output_folder = "output/"
     """ render the jinja templates, push to output directory """
 
     output_file = output_folder + str(publish_name)
@@ -42,8 +46,13 @@ def main():
 
     jinja_env = initialize()
 
-    publish("index.html", "index.html", jinja_env, "lard", "Ace's Page")
-    publish("projects.html", "projects.html", jinja_env, "lard", "Projects")
+    for root, dirs, files in os.walk('templates'):
+        for name in files:
+            if Path(name).suffix == ".html":
+                publish(name, name, jinja_env, "lard", "Ace's Page")            
+
+    # publish("index.html", "index.html", jinja_env, "lard", "Ace's Page")
+    # publish("projects.html", "projects.html", jinja_env, "lard", "Projects")
 
 
 if __name__ == "__main__":
