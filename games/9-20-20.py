@@ -38,7 +38,12 @@ class MyWindow(arcade.Window):
         x2 = x / self.width * 2. - 1.
         y2 = y / self.height * 2. - 1.
 
-        # get inital particle 
+        # get inital particle data
+        initial_data = _gen_initial_data(x2,y2)
+
+        buffer = self.ctx.buffer(data = array('f', initial_data))
+
+        buffer_description = arcade.gl.BufferDescription(buffer,'2f',['in_pos'])
 
 if __name__ == "__main__":
     window = MyWindow()
