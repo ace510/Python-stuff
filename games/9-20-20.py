@@ -30,7 +30,15 @@ class MyWindow(arcade.Window):
         pass
 
     def on_mouse_press(self, x: float, y: float, button: int, modifiers: int):
-        pass
+        def _gen_initial_data(initial_x, initial_y):
+            yield initial_x
+            yield initial_y
+        
+        # Opengl uses coords with 0,0 being the center
+        x2 = x / self.width * 2. - 1.
+        y2 = y / self.height * 2. - 1.
+
+        # get inital particle 
 
 if __name__ == "__main__":
     window = MyWindow()
