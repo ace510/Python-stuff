@@ -26,8 +26,9 @@ import logging
 logging.basicConfig(
     level=logging.DEBUG)
 
-DESK POWER STIP ALLOCATION
+DESK POWER STrIP ALLOCATION
+
 1. XBOX
 2. Work Comp
 3. Desk Ethernet Switch
-4. USB charger hub (switch, tablet)    
+4. USB charger hub (switch, tablet)
