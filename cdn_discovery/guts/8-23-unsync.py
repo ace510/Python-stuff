@@ -6,6 +6,11 @@ import moon
 import time
 import logging
 
+import sqlalchemy
+from sqlalchemy import create_engine
+from sqlalchemy.ext.declarative import declarative_base
+
+
 logging.basicConfig(
     level=logging.INFO)
 
@@ -38,7 +43,7 @@ def is_content(test_url):
         print("whoops that request failed")
         return None
 
-    if trial_request.status not in (404, 400, 403, 504, 500, 502, 503):
+    if trial_request.status not in (404, 400, 504, 500, 502, 503): # removed 403
         # this is a list of 'bad' status codes
         # so far 404 is generic URL not found
         # 400 is something that should trigger an internal app but doesn't
@@ -64,6 +69,9 @@ round_num = 0
 proc_time = int(time.time())
 batch_size = 10000
 
+logging.info(f'SQLalchemy is currently version {sqlalchemy.__version__}')
+engine = create_engine(confidential.db_conf, echo=True)
+
 
 while True:
     round_num += 1
@@ -78,7 +86,4 @@ while True:
     good_urls = [is_content(next(search_tator)) for _ in range(batch_size)]
 
     for url in good_urls:
-        url_result = url.result()
-
-        if url_result:
-            print(url_result)
+        print(f'{url[0]} returned status code {url[1]}')
