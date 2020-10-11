@@ -9,6 +9,7 @@ import logging
 import sqlalchemy
 from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy import Column, Integer, String, DateTime, SmallInteger
 
 
 logging.basicConfig(
@@ -43,7 +44,7 @@ def is_content(test_url):
         print("whoops that request failed")
         return None
 
-    if trial_request.status not in (404, 400, 504, 500, 502, 503): # removed 403
+    if trial_request.status not in (404): # removed 403, 400, 504, 500, 502, 503
         # this is a list of 'bad' status codes
         # so far 404 is generic URL not found
         # 400 is something that should trigger an internal app but doesn't
@@ -55,6 +56,17 @@ def is_content(test_url):
 
     else:
         return None
+
+engine = create_engine(confidential.db_conf, echo=True)
+Base= declarative_base()
+class URL_info(Base):
+    __tablename__ = 'url_info'
+
+    URL_STR = Column(String(200), primary_key=True, unique = True, nullable=False)
+    returned_status = Column(SmallInteger, nullable=False)
+    time_created = Column(DateTime, nullable=False)
+
+Base.metadata.create_all(engine)
 
 
 headers = urllib3.make_headers(keep_alive=True, accept_encoding=True)
@@ -70,7 +82,6 @@ proc_time = int(time.time())
 batch_size = 10000
 
 logging.info(f'SQLalchemy is currently version {sqlalchemy.__version__}')
-engine = create_engine(confidential.db_conf, echo=True)
 
 
 while True:
@@ -86,4 +97,5 @@ while True:
     good_urls = [is_content(next(search_tator)) for _ in range(batch_size)]
 
     for url in good_urls:
-        print(f'{url[0]} returned status code {url[1]}')
+        url_result = url.result()
+        
