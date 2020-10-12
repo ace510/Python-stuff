@@ -105,5 +105,5 @@ while True:
         url_result = url.result()
         if url_result:
             new_url = URL_info(URL_STR = url_result[0], returned_status = url_result[1], time_created = datetime.now() )
-            session.add(new_url)
+            session.merge(new_url)
     session.commit()
