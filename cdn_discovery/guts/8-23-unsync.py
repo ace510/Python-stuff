@@ -46,7 +46,7 @@ def is_content(test_url):
         print("whoops that request failed")
         return None
 
-    if trial_request.status !=  404: # removed 403, 400, 504, 500, 502, 503
+    if trial_request.status not in  (404,403): # removed 403, 400, 504, 500, 502, 503
         # this is a list of 'bad' status codes
         # so far 404 is generic URL not found
         # 400 is something that should trigger an internal app but doesn't
@@ -103,6 +103,7 @@ while True:
     logging
     for url in good_urls:
         url_result = url.result()
-        new_url = URL_info(URL_STR = url_result[0], returned_status = url_result[1], time_created = datetime.now() )
-        session.add(new_url)
+        if url_result:
+            new_url = URL_info(URL_STR = url_result[0], returned_status = url_result[1], time_created = datetime.now() )
+            session.add(new_url)
     session.commit()
