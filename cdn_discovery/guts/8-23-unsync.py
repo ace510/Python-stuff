@@ -5,11 +5,13 @@ import itertools
 import moon
 import time
 import logging
+from datetime import datetime
 
 import sqlalchemy
 from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy import Column, Integer, String, DateTime, SmallInteger
+from sqlalchemy import Column, String, DateTime, SmallInteger
+from sqlalchemy.orm import sessionmaker
 
 
 logging.basicConfig(
@@ -59,6 +61,7 @@ def is_content(test_url):
 
 engine = create_engine(confidential.db_conf, echo=True)
 Base= declarative_base()
+Session = sessionmaker(bind=engine)
 class URL_info(Base):
     __tablename__ = 'url_info'
 
@@ -95,8 +98,11 @@ while True:
     proc_time = the_now
 
     good_urls = [is_content(next(search_tator)) for _ in range(batch_size)]
-
+    
+    session=Session()
+    logging
     for url in good_urls:
         url_result = url.result()
-        
-        
+        new_url = URL_info(URL_STR = url_result[0], returned_status = url_result[1], time_created = datetime.now() )
+        session.add(new_url)
+    session.commit()
