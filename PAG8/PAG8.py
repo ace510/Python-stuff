@@ -27,25 +27,25 @@ for i in range(150):
     snow_list.append([x, y])
 
 
-def abs_increment(number):
+def abs_increment(number: int, increment: int):
     """this function increments a number away from 0"""
     if number < 0:
-        number -= 1
+        number -= increment
     elif number >= 0:
-        number += 1
+        number += increment
     else:
-        print "improper number given"
+        raise ValueError
     return number
 
 
-def abs_decrement(number):
+def abs_decrement(number: int, increment: int):
     """this function decrements a number towards zero"""
     if number <= 0:
-        number += 1
+        number += increment
     elif number > 0:
-        number -= 1
+        number -= increment
     else:
-        print "improper input given"
+        raise ValueError
     return number
 
 
